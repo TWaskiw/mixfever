@@ -1,126 +1,82 @@
 // ========== GLOBAL VARS ==========
-let _users = [];
-let _selectedUserId;
-const _baseUrl = "https://api.jsonbin.io/v3/b/61138ef2d5667e403a3fb6a1";
+let _drinks = [];
+let _selectedDrinkId;
+const _baseUrl = "https://api.jsonbin.io/v3/b/61517eb24a82881d6c5637e3";
 
 const _headers = {
   "X-Master-Key":
-    "$2b$10$Uf1lbMtIPrrWeneN3Wz6JuDcyBuOz.1LbHiUg32QexCCJz3nOpoS2",
+    "$2b$10$EN1s0LmPgjsOM5AjYId5kOw8OcDusdvLFYzv1lTu5WVK1HBrhQPqK",
   "Content-Type": "application/json",
 };
 
 // ========== READ ==========
 
-async function loadPersons() {
+async function loadDrinks() {
   const url = _baseUrl + "/latest"; // make sure to get the latest version
   const response = await fetch(url, {
     headers: _headers,
   });
   const data = await response.json();
   console.log(data);
-  _users = data.record;
-  appendUsers(_users);
+  _drinks = data.record;
+  appendDrinks(_drinks);
 }
-loadPersons();
+loadDrinks();
 
-function appendUsers(users) {
+function appendDrinks(drinks) {
   let htmlTemplate = "";
-  for (let user of users) {
+  for (let drink of drinks) {
     htmlTemplate += /*html*/ `
       <article>
-        <h3>${user.name}</h3>
-        <p><a href="mailto:${user.mail}">${user.mail}</a></p>
-        <button onclick="selectUser('${user.id}')">Update</button>
-        <button onclick="deleteUser('${user.id}')">Delete</button>
+        <h3>${drink.name}</h3>
+        <p><a href="mailto:${drink.mail}">${drink.mail}</a></p>
       </article>
       `;
   }
-  document.querySelector("#grid-users").innerHTML = htmlTemplate;
+  document.querySelector("#grid-drinks").innerHTML = htmlTemplate;
   showLoader(false);
 }
 
 // ========== CREATE ==========
 
-async function createUser() {
+async function createDrinks() {
   showLoader(true);
   // references to input fields
   let nameInput = document.querySelector("#name");
   let mailInput = document.querySelector("#mail");
   // dummy generated user id
-  const userId = Date.now();
+  const drinkId = Date.now();
   // declaring a new user object
-  let newUser = {
+  let newDrink = {
     name: nameInput.value,
     mail: mailInput.value,
-    id: userId,
+    id: drinkId,
   };
-  // pushing the new user object to the _users array
-  _users.push(newUser);
+  // pushing the new user object to the _drinks array
+  _drinks.push(newDrink);
   // wait for update
-  await updateJSONBIN(_users);
+  await updateJSONBIN(_drinks);
   // reset
   nameInput.value = "";
   mailInput.value = "";
   //navigating back
   navigateTo("#/");
-}
-
-// ========== UPDATE ==========
-
-function selectUser(id) {
-  _selectedUserId = id;
-  // find user by given user id
-  const user = _users.find((user) => user.id == _selectedUserId);
-  // references to the input fields
-  let nameInput = document.querySelector("#name-update");
-  let mailInput = document.querySelector("#mail-update");
-  // set indout values with selected user values
-  nameInput.value = user.name;
-  mailInput.value = user.mail;
-  navigateTo("#/update");
-}
-
-async function updateUser() {
-  showLoader(true);
-  // references to input fields
-  let nameInput = document.querySelector("#name-update");
-  let mailInput = document.querySelector("#mail-update");
-  // find user to update by given user id
-  const userToUpdate = _users.find((user) => user.id == _selectedUserId);
-  // update values of user in array
-  userToUpdate.name = nameInput.value;
-  userToUpdate.mail = mailInput.value;
-  // wait for update
-  await updateJSONBIN(_users);
-  // reset
-  nameInput.value = "";
-  mailInput.value = "";
-  //navigating back
-  navigateTo("#/");
-}
-
-// ========== DELETE ==========
-
-async function deleteUser(id) {
-  showLoader(true);
-  _users = _users.filter((user) => user.id != id);
-  await updateJSONBIN(_users);
 }
 
 // ========== Services ==========
 
-async function updateJSONBIN(users) {
-  // put users array to jsonbin
+async function updateJSONBIN(drinks) {
+  // put drinks array to jsonbin
   let response = await fetch(_baseUrl, {
     method: "PUT",
     headers: _headers,
-    body: JSON.stringify(users),
+    body: JSON.stringify(drinks),
   });
   // waiting for the result
-  const result = await response.json(); // the new updated users array from jsonbin
+  const result = await response.json(); // the new updated drinks array from jsonbin
   console.log(result);
-  //updating the DOM with the new fetched users
-  appendUsers(result.record);
+  //updating the DOM with the new fetched drinks
+  appendDrinks(result.record);
 }
 
 // ========== Loader ==========
