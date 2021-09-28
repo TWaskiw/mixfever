@@ -11,6 +11,7 @@
   --text-color-out-of-stock: rgb(89, 38, 38);
   --text-color-in-stock: rgb(172, 198, 201);
 }
+
 /* ---------- ingredients---------- */
 .Vodka {
   background-color: #ffffff;
@@ -25,59 +26,49 @@
 .Grenadine {
   background-color: #a80500;
   color: white;
-  padding: 10px;
 }
 
 .Gin {
   background-color: #d8e4bc;
   color: white;
-  padding: 10px;
 }
 
 .Lime {
   background-color: #a0d458;
   color: white;
-  padding: 10px;
 }
 
 .Mango {
   background-color: #f4bb44;
   color: white;
-  padding: 10px;
 }
 
 .Lemon {
   background-color: #fff44f;
   color: black;
-  padding: 10px;
 }
 .Tequila {
   background-color: #f4d0a4;
   color: white;
-  padding: 10px;
 }
 
 .Coffee {
   background-color: #6a513b;
   color: white;
-  padding: 10px;
 }
 
 .Aperol {
   background-color: #fa8128;
   color: white;
-  padding: 10px;
 }
 
 .Prosecco {
   background-color: #e8e5d8;
   color: white;
-  padding: 10px;
 }
 .Club {
   background-color: #e2eff0;
   color: black;
-  padding: 10px;
 }
 
 /* ---------- ingredient button---------- */
@@ -92,6 +83,7 @@
 .langlinje {
   font-size: 20px;
 }
+
 /* ---------- general styling ---------- */
 html {
   color: var(--text-color-dark);
@@ -114,14 +106,12 @@ h1 {
 h3 {
   font-weight: 400;
   letter-spacing: 1px;
-  margin: 0.5em 0 0.2em;
 }
 
 img {
   width: 100%;
   height: auto;
 }
-
 /* ---------- topbar styling ---------- */
 .topbar {
   background-color: var(--green);
@@ -202,17 +192,11 @@ img {
 
 /* ---- Drink page ---- */
 .drinks-page-top {
-  width: 80vw;
   height: 85vw;
   top: 20px;
   bottom: 20px;
   display: flex;
   flex-direction: row;
-}
-
-.drinks-top-name {
-  display: flex;
-  flex-direction: column;
 }
 
 /* ---------- logo styling ---------- */
@@ -337,7 +321,7 @@ input {
   box-shadow: 0 8px 16px 0 var(--green-opacity);
 }
 
-.grid-container > article img {
+.drinks-mid img {
   width: 100%;
   max-width: 250px;
   height: auto;
@@ -350,6 +334,33 @@ input {
 }
 
 /* ---------- drinks card styling ---------- */
+.drinks-top {
+  display: flex;
+  justify-content: space-between;
+  font-family: "Rambla", sans-serif;
+}
+.drinks-top h3 {
+  margin: 0;
+  font-size: 36px;
+  font-weight: bold;
+}
+.drinks-top p {
+  margin: 0;
+  font-weight: bold;
+  margin-top: -20px;
+}
+
+.arrow {
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.drink-top-name {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
 .drinks-mid {
   width: 100%;
   display: flex;
@@ -361,4 +372,41 @@ input {
   cursor: pointer;
   justify-self: flex-end;
   width: auto;
+  float: right;
+  font-size: 40px;
+}
+
+.drink-img {
+  display: block;
+  margin: auto;
+}
+
+.drinks-bottom {
+  display: flex;
+  justify-content: space-between;
+  margin: 7vh 0;
+}
+
+.card-approach {
+  display: flex;
+  flex-direction: column;
+}
+
+.approach-navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 5px;
+}
+
+.approach-description {
+  width: 90%;
+  margin: 0 auto;
+  height: 200px;
+  background-color: grey;
+  border-radius: 25px;
+  max-width: 575px;
+}
+.optional img {
+  width: 50px;
 }
