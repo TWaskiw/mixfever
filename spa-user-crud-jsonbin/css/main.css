@@ -22,6 +22,65 @@
   color: white;
 }
 
+.Grenadine {
+  background-color: #a80500;
+  color: white;
+  padding: 10px;
+}
+
+.Gin {
+  background-color: #d8e4bc;
+  color: white;
+  padding: 10px;
+}
+
+.Lime {
+  background-color: #a0d458;
+  color: white;
+  padding: 10px;
+}
+
+.Mango {
+  background-color: #f4bb44;
+  color: white;
+  padding: 10px;
+}
+
+.Lemon {
+  background-color: #fff44f;
+  color: black;
+  padding: 10px;
+}
+.Tequila {
+  background-color: #f4d0a4;
+  color: white;
+  padding: 10px;
+}
+
+.Coffee {
+  background-color: #6a513b;
+  color: white;
+  padding: 10px;
+}
+
+.Aperol {
+  background-color: #fa8128;
+  color: white;
+  padding: 10px;
+}
+
+.Prosecco {
+  background-color: #e8e5d8;
+  color: white;
+  padding: 10px;
+}
+.Club {
+  background-color: #e2eff0;
+  color: black;
+  padding: 10px;
+}
+
+/* ---------- ingredient button---------- */
 .ingredient-button {
   padding: 10px;
   border-radius: 10px;
@@ -30,14 +89,8 @@
   box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
 }
 
-.Grenadine {
-  background-color: #a80500;
-  color: white;
-  padding: 10px;
-  border-radius: 10px;
-  -webkit-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
-  -moz-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
-  box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+.langlinje {
+  font-size: 20px;
 }
 /* ---------- general styling ---------- */
 html {
@@ -278,7 +331,6 @@ input {
   padding: 2em 1em;
   background-color: var(--white);
   transition: 0.3s;
-  cursor: pointer;
 }
 
 .grid-container > article:hover {
@@ -304,9 +356,9 @@ input {
   justify-content: space-between;
 }
 
-.favorite-btn {
-  display: block;
+.heart {
+  display: flex;
   cursor: pointer;
-  float: right;
-  width: 30px;
+  justify-self: flex-end;
+  width: auto;
 }

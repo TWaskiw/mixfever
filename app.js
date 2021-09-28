@@ -122,7 +122,7 @@
         category: "alcohol",
       },
       {
-        name: "Kahlua",
+        name: "Coffee Liqueur",
         amount: 3,
         category: "liqeuer",
       },
