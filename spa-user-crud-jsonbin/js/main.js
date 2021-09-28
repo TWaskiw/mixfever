@@ -17,8 +17,8 @@ async function loadDrinks() {
     headers: _headers,
   });
   const data = await response.json();
-  console.log(data);
   _drinks = data.record;
+  console.log(data);
   appendDrinks(_drinks);
 }
 loadDrinks();
@@ -27,9 +27,28 @@ function appendDrinks(drinks) {
   let htmlTemplate = "";
   for (let drink of drinks) {
     htmlTemplate += /*html*/ `
-      <article>
+      <article class="drink-card">
+      <div class="drinks-page-top">
+          <div class="drinks-top-name">
         <h3>${drink.name}</h3>
-        <p><a href="mailto:${drink.mail}">${drink.mail}</a></p>
+        <p>${drink.strength}</p>
+          </div>
+             <div class="favorite-btn">
+                  <i class="far fa-heart"></i>
+                  </div>
+      </div>
+      <div class="drinks-mid">
+        <div class="ingredients">
+        <h4>Ingredients</h4>
+        ${ingredientsList(drink)}
+           </div>
+        <div class="optional">
+        <h4>Optional</h4>
+          </div>
+      </div>
+        <div class="drinks-card-bottom">
+        
+        </div>
       </article>
       `;
   }
@@ -37,7 +56,18 @@ function appendDrinks(drinks) {
   showLoader(false);
 }
 
-// ========== CREATE ==========
+// ========== Grab ingredients ==========
+
+function ingredientsList(drink) {
+  let html = "";
+  for (const ingredient of drink.ingredients) {
+    console.log(ingredient);
+    html += /*html*/ `
+    <p class="${ingredient.name} ingredient-button">${ingredient.name}</p>
+    `;
+  }
+  return html;
+}
 
 async function createDrinks() {
   showLoader(true);

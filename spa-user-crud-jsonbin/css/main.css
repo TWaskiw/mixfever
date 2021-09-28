@@ -11,7 +11,34 @@
   --text-color-out-of-stock: rgb(89, 38, 38);
   --text-color-in-stock: rgb(172, 198, 201);
 }
+/* ---------- ingredients---------- */
+.Vodka {
+  background-color: #ffffff;
+  color: black;
+}
 
+.Orange {
+  background-color: orange;
+  color: white;
+}
+
+.ingredient-button {
+  padding: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  -moz-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+}
+
+.Grenadine {
+  background-color: #a80500;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  -moz-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+}
 /* ---------- general styling ---------- */
 html {
   color: var(--text-color-dark);
@@ -118,6 +145,21 @@ img {
   animation: fadeIn 0.4s;
   /* padding equals height of tabbar and topbar */
   padding: 55px 0;
+}
+
+/* ---- Drink page ---- */
+.drinks-page-top {
+  width: 80vw;
+  height: 85vw;
+  top: 20px;
+  bottom: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+.drinks-top-name {
+  display: flex;
+  flex-direction: column;
 }
 
 /* ---------- logo styling ---------- */
@@ -230,24 +272,6 @@ input {
 }
 
 /* ---------- grid container styling ---------- */
-.grid-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  padding: 1em;
-  gap: 1em;
-}
-
-@media (min-width: 600px) {
-  .grid-container {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (min-width: 992px) {
-  .grid-container {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-}
 
 .grid-container > article {
   text-align: center;
@@ -271,4 +295,18 @@ input {
   width: 100%;
   height: auto;
   margin: 1em 0;
+}
+
+/* ---------- drinks card styling ---------- */
+.drinks-mid {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.favorite-btn {
+  display: block;
+  cursor: pointer;
+  float: right;
+  width: 30px;
 }
