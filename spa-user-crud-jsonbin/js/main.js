@@ -231,42 +231,27 @@ function closeNav() {
 }
 
 // ========= From Discover cards to chosen category ========= //
-function appendTeachers(teachers) {
-  document.querySelector("#grid-teachers").innerHTML = ""; // clear content of grid teachers
-  for (let teacher of teachers) {
-    console.log(teacher);
-    document.querySelector("#grid-teachers").innerHTML +=
-      "<article>" +
-      "<img src='" +
-      teacher.img +
-      "'>" +
-      "<h3>" +
-      teacher.name +
-      "</h3>" +
-      teacher.position +
-      "<br>" +
-      "<a href='mailto:" +
-      teacher.mail +
-      "'>" +
-      teacher.mail +
-      "</a><br>" +
-      "Keywords: " +
-      teacher.keywords +
-      "</article>";
-  }
-}
-
 function filterByKeyword(keyword) {
-  let filteredTeachers = [];
-  for (let teacher of teachers) {
-    if (teacher.keywords.includes(keyword)) {
-      filteredTeachers.push(teacher);
-    }
-  }
-  console.log(filteredTeachers);
-  appendTeachers(filteredTeachers);
-}
+  const filteredDrinks = _drinks.filter(drink => {
+    const result = drink.categories.find(category => {
+      return category === keyword
+    })
+    return result
+  });
 
-function reset() {
-  appendTeachers(teachers);
+  document.getElementById("category-title").innerText = keyword;
+  
+  document.getElementById("alcohol-test").innerHTML = filteredDrinks.map(drink => {
+    return `<div class="vodka-card">${drink.name}</div>`
+  }).join("");
+
+//   document.querySelector("body").innerHTML = `
+//   <section id="category" class="page">
+//   <div class="discover-top">
+//     <i class="fas fa-arrow-left"></i>
+//     <h1>SDFSDFSDF</h1>
+//   </div>
+// </section>`;
+  navigateTo("#/category");
+  return filteredDrinks
 }
