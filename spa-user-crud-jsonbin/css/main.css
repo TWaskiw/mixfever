@@ -47,6 +47,7 @@
   background-color: #fff44f;
   color: black;
 }
+
 .Tequila {
   background-color: #f4d0a4;
   color: white;
@@ -66,6 +67,7 @@
   background-color: #e8e5d8;
   color: white;
 }
+
 .Club {
   background-color: #e2eff0;
   color: black;
@@ -112,6 +114,7 @@ img {
   width: 100%;
   height: auto;
 }
+
 /* ---------- topbar styling ---------- */
 .topbar {
   background-color: var(--white);
@@ -252,58 +255,16 @@ img {
   }
 }
 
-/* ---------- input form stryling ---------- */
-form {
-  background-color: var(--light-green);
-  padding: 2em 1em 2.5em;
-}
-
-form button {
-  font-weight: 200;
-  text-align: center;
-  cursor: pointer;
-  border: none;
-  padding: 12px 15px;
-  font-size: 1em;
-  border-radius: 0;
-  color: var(--text-color-light);
-  background-color: var(--green);
-  width: 100%;
-  max-width: 350px;
-}
-
-article button {
-  font-weight: 200;
-  text-align: center;
-  cursor: pointer;
-  border: none;
-  padding: 10px 8px;
-  border-radius: 0;
-  color: var(--text-color-light);
-  background-color: var(--green);
-  width: 40%;
-  text-transform: uppercase;
-}
-
-input {
-  margin: 1em auto;
-  width: 100%;
-  max-width: 350px;
-  padding: 12px 15px;
-  box-sizing: border-box;
-  display: block;
-}
-
 /* ---------- grid container styling ---------- */
 
-.grid-container > article {
+.grid-container>article {
   text-align: center;
   padding: 2em 1em;
   background-color: var(--white);
   transition: 0.3s;
 }
 
-.grid-container > article:hover {
+.grid-container>article:hover {
   box-shadow: 0 8px 16px 0 var(--green-opacity);
 }
 
@@ -325,11 +286,13 @@ input {
   justify-content: space-between;
   font-family: "Rambla", sans-serif;
 }
+
 .drinks-top h3 {
   margin: 0;
   font-size: 36px;
   font-weight: bold;
 }
+
 .drinks-top p {
   margin: 0;
   font-weight: bold;
@@ -353,7 +316,7 @@ input {
   justify-content: space-between;
 }
 
-.heart {
+.favheart {
   display: flex;
   cursor: pointer;
   justify-self: flex-end;
@@ -393,6 +356,7 @@ input {
   border-radius: 25px;
   max-width: 575px;
 }
+
 .optional img {
   width: 50px;
 }
@@ -402,22 +366,33 @@ input {
   /* Height & width depends on how you want to reveal the overlay (see JS below) */
   height: 100%;
   width: 0;
-  position: fixed; /* Stay in place */
-  z-index: 1000; /* Sit on top */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1000;
+  /* Sit on top */
   left: 0;
   top: 0;
-  background-color: rgb(0, 0, 0); /* Black fallback color */
-  background-color: rgba(0, 0, 0, 0.9); /* Black w/opacity */
-  overflow-x: hidden; /* Disable horizontal scroll */
-  transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+  background-color: rgb(0, 0, 0);
+  /* Black fallback color */
+  background-color: rgba(0, 0, 0, 0.9);
+  /* Black w/opacity */
+  overflow-x: hidden;
+  /* Disable horizontal scroll */
+  transition: 0.5s;
+  /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
 }
+
 /* Position the content inside the overlay */
 .overlay-content {
   position: relative;
-  top: 25%; /* 25% from the top */
-  width: 100%; /* 100% width */
-  text-align: center; /* Centered text/links */
-  margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+  top: 25%;
+  /* 25% from the top */
+  width: 100%;
+  /* 100% width */
+  text-align: center;
+  /* Centered text/links */
+  margin-top: 30px;
+  /* 30px top margin to avoid conflict with the close button on smaller screens */
 }
 
 /* The navigation links inside the overlay */
@@ -426,8 +401,10 @@ input {
   text-decoration: none;
   font-size: 36px;
   color: #818181;
-  display: block; /* Display block instead of inline */
-  transition: 0.3s; /* Transition effects on hover (color) */
+  display: block;
+  /* Display block instead of inline */
+  transition: 0.3s;
+  /* Transition effects on hover (color) */
 }
 
 /* When you mouse over the navigation links, change their color */
@@ -449,12 +426,14 @@ input {
   .overlay a {
     font-size: 20px;
   }
+
   .overlay .closebtn {
     font-size: 40px;
     top: 15px;
     right: 35px;
   }
 }
+
 /* ---------- discover styling ---------- */
 .discover-top {
   display: flex;
@@ -487,6 +466,7 @@ input {
   background-color: aqua;
   border-radius: 10px;
 }
+
 .whiterum-card {
   width: 120px;
   height: 200px;

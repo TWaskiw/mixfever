@@ -5,8 +5,7 @@ let _selectedDrinkId;
 const _baseUrl = "https://api.jsonbin.io/v3/b/61517eb24a82881d6c5637e3";
 
 const _headers = {
-  "X-Master-Key":
-    "$2b$10$EN1s0LmPgjsOM5AjYId5kOw8OcDusdvLFYzv1lTu5WVK1HBrhQPqK",
+  "X-Master-Key": "$2b$10$EN1s0LmPgjsOM5AjYId5kOw8OcDusdvLFYzv1lTu5WVK1HBrhQPqK",
   "Content-Type": "application/json",
 };
 
@@ -21,6 +20,7 @@ async function loadDrinks() {
   _drinks = data.record;
   console.log(data);
   appendDrinks(_drinks);
+  appendFavDrinks(_favDrinks)
 }
 loadDrinks();
 
@@ -37,7 +37,7 @@ function appendDrinks(drinks) {
               <h3>${drink.name}</h3><br>
               <p>${drink.strength} strength</p>
             </div>
-            <span class="heart">
+            <span class="favheart">
               <i class="far fa-heart"></i>
            </span>
           </div>
@@ -75,6 +75,67 @@ function appendDrinks(drinks) {
   document.querySelector("#grid-drinks").innerHTML = htmlTemplate;
   showLoader(false);
 }
+
+/* Append fav drinks */
+let _favDrinks = [];
+function appendFavDrinks() {
+  let htmlFav = "";
+  for (const drink of _favDrinks) {
+    console.log(drink);
+    htmlFav += /*html*/ `
+      <article>
+        <h2>${drink.name} (${drink.strength})</h2>
+        <img src="${drink.img}">
+        ${generateFavMovieButton(drink.id)}
+      </article>
+    `;
+  }
+  // if no movies display a default text
+  if (_favDrinks.length === 0) {
+    htmlFav = "<p>No drinks added to favorites</p>";
+  }
+  document.querySelector("#fav-drink-container").innerHTML = htmlFav;
+}
+
+/**
+ * Generating the fav button
+ */
+function generateFavMovieButton(drinkId) {
+  let btnTemplate = `
+    <button onclick="addToFavourites('${drinkId}')">Add to favourites</button>`;
+  if (isFavDrink(drinkId)) {
+    btnTemplate = `
+      <button onclick="removeFromFavourites('${drinkId}')" class="rm">Remove from favourites</button>`;
+  }
+  return btnTemplate;
+}
+
+/**
+ * Adding movie to favorites by given movieId
+ */
+function addToFavourites(drinkId) {
+  let favdrink = _drinks.find((drink) => drink.id === drinkId);
+  _favDrinks.push(favdrink);
+  appendDrinks(_drinks); // update the DOM to display the right button
+  appendFavDrinks(); // update the DOM to display the right items from the _favMovies list
+}
+
+/**
+ * Removing movie from favorites by given drinkId
+ */
+function removeFromFavourites(drinkId) {
+  _favDrinks = _favDrinks.filter((drink) => drink.id !== drinkId);
+  appendDrinks(_drinks); // update the DOM to display the right button
+  appendFavDrinks(); // update the DOM to display the right items from the _favMovies list
+}
+
+/**
+ * Checking if movie already is added to _favMovies
+ */
+function isFavDrink(drinkId) {
+  return _favDrinks.find((drink) => drink.id === drinkId); // checking if _favMovies has the movie with matching id or not
+}
+
 
 // ========== Grab ingredients ==========
 

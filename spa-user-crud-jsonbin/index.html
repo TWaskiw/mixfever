@@ -1,124 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>User CRUD SPA</title>
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
-      crossorigin="anonymous"
-    />
-    <meta
-      name="description"
-      content="Get started with HTML, CSS and JavaScript"
-    />
-    <meta name="author" content="Rasmus Cederdorff" />
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Rambla&display=swap"
-      rel="stylesheet"
-    />
-  </head>
 
-  <body>
-    <!-- tabbar navigation -->
-    <nav class="tabbar">
-      <a href="#/"><i class="fas fa-home fa-lg nav-link"></i></a>
-      <a class="page" href="#/discover"
-        ><i class="fas fa-glass-martini-alt fa-lg nav-link"></i
-      ></a>
-      <a class="page" href="#/favorite"><i class="fas fa-heart fa-lg nav-link"></i></a>
-      <a class="page" href="#/contact"><i class="fas fa-search fa-lg nav-link"></i></a>
-      <a class="page" href="#/burger-menu" onclick="openNav()"
-        ><i class="fas fa-bars fa-lg"></i
-      ></a>
-    </nav>
+<head>
+  <meta charset="utf-8" />
+  <title>User CRUD SPA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
+  <meta name="description" content="Get started with HTML, CSS and JavaScript" />
+  <meta name="author" content="Rasmus Cederdorff" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rambla&display=swap" rel="stylesheet" />
+</head>
 
-    <!-- The overlay -->
-    <div id="myNav" class="overlay">
-      <!-- Button to close the overlay navigation -->
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
-        >&times;</a
-      >
+<body>
+  <!-- tabbar navigation -->
+  <nav class="tabbar">
+    <a class="nav-link" href="#/"><i class="fas fa-home fa-lg"></i></a>
+    <a class="nav-link" href="#/discover"><i class="fas fa-glass-martini-alt fa-lg"></i></a>
+    <a class="nav-link" href="#/favorites"><i class="fas fa-heart fa-lg"></i></a>
+    <a class="nav-link" href="#/search"><i class="fas fa-search fa-lg"></i></a>
+    <a class="nav-link" href="#/burger-menu" onclick="openNav()"><i class="fas fa-bars fa-lg"></i></a>
+  </nav>
 
-      <!-- Overlay content -->
-      <div class="overlay-content">
-        <a href="#">Login</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-        <a href="#">Submit a drink</a>
+  <!-- The overlay -->
+  <div id="myNav" class="overlay">
+    <!-- Button to close the overlay navigation -->
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+    <!-- Overlay content -->
+    <div class="overlay-content">
+      <a href="#">Login</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="#">Submit a drink</a>
+    </div>
+  </div>
+
+  <!-- pages -->
+  <!-- users page -->
+  <section id="home" class="page">
+    <div id="grid-drinks" class="grid-container"></div>
+  </section>
+
+  <!-- Discover page -->
+  <section class="discover page" id="discover">
+    <section id="fav-drink-container"></section>
+    <div class="discover-section">
+      <div class="discover-top">
+        <i class="fas fa-arrow-left"></i>
+        <h3>Discover</h3>
+      </div>
+      <div class="alcohol-section">
+        <h4>Alcohol</h4>
+        <div class="alcohol">
+          <div class="vodka-card" onclick="filterByKeyword('vodka')"></div>
+          <div class="gin-card" onclick="filterByKeyword('gin')"></div>
+          <div class="whiterum-card" onclick="filterByKeyword('white rum')"></div>
+        </div>
+      </div>
+      <div class="type">
+        <div class="tropical-card"></div>
+        <div class="frozen-card"></div>
+        <div class="creamy-card"></div>
+      </div>
+      <div class="vibe">
+        <div class="poolside-card"></div>
+        <div class="movie-card"></div>
+        <div class="birthday-card"></div>
       </div>
     </div>
+  </section>
 
-    <!-- pages -->
-    <!-- users page -->
-    <section id="home" class="page">
-      <div id="grid-drinks" class="grid-container"></div>
-    </section>
+  <!-- Discover -->
+  <section id="favorites" class="page">
+  </section>
 
-    <!-- Discover page -->
-    <section id="discover" class="page">
- <section class="discover page" id="discover">
-        <div class="discover-section">
-          <div class="discover-top">
-            <i class="fas fa-arrow-left"></i>
-            <h3>Discover</h3>
-          </div>
-          <div class="alcohol-section">
-            <h4>Alcohol</h4>
-            <div class="alcohol">
-              <div class="vodka-card" onclick="filterByKeyword('vodka')"></div>
-              <div class="gin-card" onclick="filterByKeyword('gin')"></div>
-              <div
-                class="whiterum-card"
-                onclick="filterByKeyword('white rum')"
-              ></div>
-            </div>
-          </div>
-          <div class="type">
-            <div class="tropical-card"></div>
-            <div class="frozen-card"></div>
-            <div class="creamy-card"></div>
-          </div>
-          <div class="vibe">
-            <div class="poolside-card"></div>
-            <div class="movie-card"></div>
-            <div class="birthday-card"></div>
-          </div>
-        </div>
-      </section>
-    </section>
+  <!-- Chosen category from Discover -->
+  <section id="contact" class="page">ß</section>
 
-    </section>
+  <!-- loader  -->
+  <div id="loader">
+    <div class="spinner"></div>
+  </div>
 
-    <!-- Discover -->
-    <section id="favorite" class="page">
-     
+  <!-- Router functionality  -->
+  <script src="js/router.js"></script>
+  <!-- main js file -->
+  <script src="js/main.js"></script>
+</body>
 
-    <!-- Chosen category from Discover -->
-    <section id="contact" class="page">ß</section>
-
-    <!-- loader  -->
-    <div id="loader">
-      <div class="spinner"></div>
-    </div>
-
-    <!-- Router functionality  -->
-    <script src="js/router.js"></script>
-    <!-- main js file -->
-    <script src="js/main.js"></script>
-  </body>
 </html>
