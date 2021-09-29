@@ -114,8 +114,8 @@ img {
 }
 /* ---------- topbar styling ---------- */
 .topbar {
-  background-color: var(--green);
-  color: var(--text-color-light);
+  background-color: var(--white);
+  color: var(--text-color-dark);
   padding: 13.5px;
   text-transform: uppercase;
   position: fixed;
@@ -127,44 +127,31 @@ img {
 
 .topbar h2 {
   margin: 0;
-  font-weight: 400;
-}
-
-.topbar a {
-  text-decoration: none;
-  color: var(--text-color-light);
-  position: absolute;
-  top: 20px;
-}
-
-.topbar a.left {
-  left: 20px;
-}
-
-.topbar a.right {
-  right: 20px;
+  font-weight: 300;
 }
 
 /* ---------- tabbar styling ---------- */
 .tabbar {
-  background-color: var(--green);
+  background-color: var(--white);
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   z-index: 9999;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 /* Style the links inside the navigation bar */
 .tabbar a {
-  display: inline-block;
-  color: var(--text-color-light);
-  text-align: center;
-  padding: 20px 16px;
+  color: var(--text-color-dark);
+  padding: 20px 0px;
   text-decoration: none;
   font-size: 0.8em;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  width: 20%;
 }
 
 /* Change the color of links on hover */
@@ -175,8 +162,8 @@ img {
 
 /* Add a color to the active/current link */
 .tabbar a.active {
-  background-color: var(--light-green);
-  color: var(--green);
+  background-color: var(--light-white);
+  color: var(--text-color-light);
 }
 
 /* ---------- page styling ---------- */
@@ -184,7 +171,6 @@ img {
   display: none;
   /*min heigh is screen heigh minus height of tab and top bar */
   min-height: calc(100vh - 110px);
-  background: var(--light-grey);
   animation: fadeIn 0.4s;
   /* padding equals height of tabbar and topbar */
   padding: 55px 0;
@@ -409,4 +395,101 @@ input {
 }
 .optional img {
   width: 50px;
+}
+
+/* The Overlay (background) */
+.overlay {
+  /* Height & width depends on how you want to reveal the overlay (see JS below) */
+  height: 100%;
+  width: 0;
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  top: 0;
+  background-color: rgb(0, 0, 0); /* Black fallback color */
+  background-color: rgba(0, 0, 0, 0.9); /* Black w/opacity */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
+/* Position the content inside the overlay */
+.overlay-content {
+  position: relative;
+  top: 25%; /* 25% from the top */
+  width: 100%; /* 100% width */
+  text-align: center; /* Centered text/links */
+  margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+}
+
+/* The navigation links inside the overlay */
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block; /* Display block instead of inline */
+  transition: 0.3s; /* Transition effects on hover (color) */
+}
+
+/* When you mouse over the navigation links, change their color */
+.overlay a:hover,
+.overlay a:focus {
+  color: #f1f1f1;
+}
+
+/* Position the close button (top right corner) */
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
+
+/* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
+@media screen and (max-height: 450px) {
+  .overlay a {
+    font-size: 20px;
+  }
+  .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+  }
+}
+/* ---------- discover styling ---------- */
+.discover-top {
+  display: flex;
+  margin: 0;
+}
+
+.discover-top h3 {
+  font-family: "Dancing Script", cursive;
+  font-size: 50px;
+  display: block;
+  margin: auto;
+}
+
+.alcohol {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.vodka-card {
+  width: 120px;
+  height: 200px;
+  background-color: aqua;
+  border-radius: 10px;
+}
+
+.gin-card {
+  width: 120px;
+  height: 200px;
+  background-color: aqua;
+  border-radius: 10px;
+}
+.whiterum-card {
+  width: 120px;
+  height: 200px;
+  background-color: aqua;
+  border-radius: 10px;
 }

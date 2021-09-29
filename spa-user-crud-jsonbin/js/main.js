@@ -1,4 +1,4 @@
-// ========== GLOBAL VARS =========
+// ========== GLOBAL VARIABLES =========
 
 let _drinks = [];
 let _selectedDrinkId;
@@ -157,4 +157,55 @@ function showLoader(show) {
   } else {
     loader.classList.add("hide");
   }
+}
+
+/* Open when someone clicks on the span element */
+function openNav() {
+  document.getElementById("myNav").style.width = "100%";
+}
+
+/* Close when someone clicks on the "x" symbol inside the overlay */
+function closeNav() {
+  document.getElementById("myNav").style.width = "0%";
+}
+
+// ========= From Discover cards to chosen category ========= //
+function appendTeachers(teachers) {
+  document.querySelector("#grid-teachers").innerHTML = ""; // clear content of grid teachers
+  for (let teacher of teachers) {
+    console.log(teacher);
+    document.querySelector("#grid-teachers").innerHTML +=
+      "<article>" +
+      "<img src='" +
+      teacher.img +
+      "'>" +
+      "<h3>" +
+      teacher.name +
+      "</h3>" +
+      teacher.position +
+      "<br>" +
+      "<a href='mailto:" +
+      teacher.mail +
+      "'>" +
+      teacher.mail +
+      "</a><br>" +
+      "Keywords: " +
+      teacher.keywords +
+      "</article>";
+  }
+}
+
+function filterByKeyword(keyword) {
+  let filteredTeachers = [];
+  for (let teacher of teachers) {
+    if (teacher.keywords.includes(keyword)) {
+      filteredTeachers.push(teacher);
+    }
+  }
+  console.log(filteredTeachers);
+  appendTeachers(filteredTeachers);
+}
+
+function reset() {
+  appendTeachers(teachers);
 }

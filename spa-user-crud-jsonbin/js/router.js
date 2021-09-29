@@ -3,9 +3,10 @@
  * "path": "id of page in DOM"
  */
 const routes = {
-  "#/": "drinks",
-  "#/klk": "klk",
-  "#/update": "update",
+  "#/": "home",
+  "#/about": "about",
+  "#/clients": "clients",
+  "#/contact": "contact",
 };
 
 /**
@@ -47,7 +48,7 @@ function setActiveTab(pathname) {
  * Attaching event to nav links and preventing default anchor link event
  */
 function attachNavLinkEvents() {
-  const navLinks = document.querySelectorAll(".nav-link");
+  const navLinks = document.querySelectorAll(".page");
   for (const link of navLinks) {
     link.addEventListener("click", function (event) {
       const path = link.getAttribute("href");

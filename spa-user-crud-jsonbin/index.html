@@ -5,8 +5,14 @@
     <title>User CRUD SPA</title>
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+      crossorigin="anonymous"
+    />
     <meta
       name="description"
       content="Get started with HTML, CSS and JavaScript"
@@ -19,73 +25,91 @@
       type="text/css"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rambla&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rambla&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
     <!-- tabbar navigation -->
     <nav class="tabbar">
-      <a href="#/" class="nav-link"><i class="fa fa-fw fa-home"></i>Home</a>
-      <a href="#/discover" class="nav-link"></a>
-        <img src="/img/discover.jpg" />Discover</a
-      >
-      <a href="#/favorites" class="nav-link"
-        ><i class="fas fa-heart"></i>Favorites</a
-      >
-      <a href="#/search" class="nav-link"
-        ><i class="fas fa-search"></i>Search</a
-      >
+      <a href="#/"><i class="fas fa-home fa-lg nav-link"></i></a>
+      <a class="page" href="#/discover"
+        ><i class="fas fa-glass-martini-alt fa-lg nav-link"></i
+      ></a>
+      <a class="page" href="#/favorite"><i class="fas fa-heart fa-lg nav-link"></i></a>
+      <a class="page" href="#/contact"><i class="fas fa-search fa-lg nav-link"></i></a>
+      <a class="page" href="#/burger-menu" onclick="openNav()"
+        ><i class="fas fa-bars fa-lg"></i
+      ></a>
     </nav>
+
+    <!-- The overlay -->
+    <div id="myNav" class="overlay">
+      <!-- Button to close the overlay navigation -->
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+        >&times;</a
+      >
+
+      <!-- Overlay content -->
+      <div class="overlay-content">
+        <a href="#">Login</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Submit a drink</a>
+      </div>
+    </div>
 
     <!-- pages -->
     <!-- users page -->
-    <section id="drinks" class="page">
+    <section id="home" class="page">
       <div id="grid-drinks" class="grid-container"></div>
     </section>
 
-    <!-- create user page -->
-    <section id="create" class="page">
-      <header class="topbar">
-        <a href="#/" class="nav-link left">Back</a>
-        <h2>Create user</h2>
-        <a class="right" onclick="createUser()">Save</a>
-      </header>
-      <form>
-        <input type="text" id="name" placeholder="Type your name" required />
-        <input type="email" id="mail" placeholder="Type your mail" required />
-        <button type="button" name="button" onclick="createUser()">
-          Create User
-        </button>
-      </form>
+    <!-- Discover page -->
+    <section id="discover" class="page">
+ <section class="discover page" id="discover">
+        <div class="discover-section">
+          <div class="discover-top">
+            <i class="fas fa-arrow-left"></i>
+            <h3>Discover</h3>
+          </div>
+          <div class="alcohol-section">
+            <h4>Alcohol</h4>
+            <div class="alcohol">
+              <div class="vodka-card" onclick="filterByKeyword('vodka')"></div>
+              <div class="gin-card" onclick="filterByKeyword('gin')"></div>
+              <div
+                class="whiterum-card"
+                onclick="filterByKeyword('white rum')"
+              ></div>
+            </div>
+          </div>
+          <div class="type">
+            <div class="tropical-card"></div>
+            <div class="frozen-card"></div>
+            <div class="creamy-card"></div>
+          </div>
+          <div class="vibe">
+            <div class="poolside-card"></div>
+            <div class="movie-card"></div>
+            <div class="birthday-card"></div>
+          </div>
+        </div>
+      </section>
     </section>
 
-    <!-- edir user page -->
-    <section id="update" class="page">
-      <header class="topbar">
-        <a href="#/" class="nav-link left">Back</a>
-        <h2>Update user</h2>
-        <a class="right" onclick="updateUser()">Update</a>
-      </header>
-      <form>
-        <input
-          type="text"
-          id="name-update"
-          placeholder="Type your name"
-          required
-        />
-        <input
-          type="email"
-          id="mail-update"
-          placeholder="Type your mail"
-          required
-        />
-        <button type="button" name="button" onclick="updateUser()">
-          Update User
-        </button>
-      </form>
     </section>
+
+    <!-- Discover -->
+    <section id="favorite" class="page">
+     
+
+    <!-- Chosen category from Discover -->
+    <section id="contact" class="page">ß</section>
 
     <!-- loader  -->
     <div id="loader">
