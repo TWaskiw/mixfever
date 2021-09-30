@@ -39,6 +39,16 @@ function appendDrinks(drinks) {
             </div>
             <span class="favheart">
               <i class="far fa-heart"></i>
+
+              <!-- COPY -->
+              <label for="servingsAmount">Servings amount:
+              <select id="servingsAmount" onchange="multiply(this.value)">
+                <option value="1" selected disabled>Choose here</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </label>
+
            </span>
           </div>
       <div class="drinks-mid">
@@ -78,6 +88,7 @@ function appendDrinks(drinks) {
 
 /* Append fav drinks */
 let _favDrinks = [];
+
 function appendFavDrinks() {
   let htmlFav = "";
   for (const drink of _favDrinks) {
@@ -148,6 +159,33 @@ function ingredientsList(drink) {
   }
   return html;
 }
+
+// COPY
+function multiply(drink) {
+  let servingsInput = document.querySelector("#servingsAmount").value;
+  console.log(servingsInput);
+  /*
+  let ingredientsAmount = ${ingredientsList()};
+  /*
+  let ingredientAmount = drinks.ingredients.amount;
+  let servingsResult = servingsInput * ingredientAmount;
+  console.log();
+  */
+}
+/*
+function multiplyServings() {
+  let inputServing = document.querySelector("#servingsAmount");
+}
+*/
+/*
+function multiplyServings() {
+  let servingOption = document.getElementById("#servingsAmount");
+  let servingValue = servingOption.value;
+  let result = servingValue * 10;
+  console.log(result);
+  }
+*/
+
 
 function optionalList(drink) {
   let htmlOptional = "";
