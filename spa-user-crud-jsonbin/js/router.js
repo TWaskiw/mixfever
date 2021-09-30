@@ -7,6 +7,7 @@ const routes = {
   "#/discover": "discover",
   "#/favorites": "favorites",
   "#/search": "search",
+  "#/category": "category"
 };
 
 /**
