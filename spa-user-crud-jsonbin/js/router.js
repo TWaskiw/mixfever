@@ -7,7 +7,8 @@ const routes = {
   "#/discover": "discover",
   "#/favorites": "favorites",
   "#/search": "search",
-  "#/category": "category"
+  "#/category": "category",
+  "#/specific-drink": "specific-drink",
 };
 
 /**
@@ -48,7 +49,7 @@ function navigateTo(pathname) {
   window.history.pushState({}, pathname, basePath + pathname);
   document.querySelector(`#${routes[pathname]}`).style.display = "block";
   setActiveTab(pathname);
-};
+}
 
 /**
  * Changing display to none for all pages

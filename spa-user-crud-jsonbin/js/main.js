@@ -5,7 +5,8 @@ let _selectedDrinkId;
 const _baseUrl = "https://api.jsonbin.io/v3/b/61517eb24a82881d6c5637e3";
 
 const _headers = {
-  "X-Master-Key": "$2b$10$EN1s0LmPgjsOM5AjYId5kOw8OcDusdvLFYzv1lTu5WVK1HBrhQPqK",
+  "X-Master-Key":
+    "$2b$10$EN1s0LmPgjsOM5AjYId5kOw8OcDusdvLFYzv1lTu5WVK1HBrhQPqK",
   "Content-Type": "application/json",
 };
 
@@ -20,7 +21,6 @@ async function loadDrinks() {
   _drinks = data.record;
   console.log(data);
   appendDrinks(_drinks);
-  appendFavDrinks(_favDrinks)
 }
 loadDrinks();
 
@@ -38,12 +38,13 @@ function appendDrinks(drinks) {
               <p>${drink.strength} strength</p>
             </div>
             <span class="favheart">
-              <i class="far fa-heart"></i>
-
+              ${generateFavMovieButton(drink.id)}
               <!-- COPY -->
               <label for="servingsAmount">Servings amount:
-              <select id="servingsAmount" onchange="multiply(this.value)">
-                <option value="1" selected disabled>Choose here</option>
+              <select id="servingsAmount" onchange="multiply(this.value, ${
+                drink.id
+              })">
+                <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
               </select>
@@ -82,7 +83,7 @@ function appendDrinks(drinks) {
       </article>
       `;
   }
-  document.querySelector("#grid-drinks").innerHTML = htmlTemplate;
+  document.querySelector("#chosen-drink").innerHTML = htmlTemplate;
   showLoader(false);
 }
 
@@ -113,10 +114,10 @@ function appendFavDrinks() {
  */
 function generateFavMovieButton(drinkId) {
   let btnTemplate = `
-    <button onclick="addToFavourites('${drinkId}')">Add to favourites</button>`;
+    <i class="far fa-heart" onclick="addToFavourites('${drinkId}')"></i>`;
   if (isFavDrink(drinkId)) {
     btnTemplate = `
-      <button onclick="removeFromFavourites('${drinkId}')" class="rm">Remove from favourites</button>`;
+      <i class="far fa-heart" onclick="removeFromFavourites('${drinkId}')" class="rm"></i>`;
   }
   return btnTemplate;
 }
@@ -125,9 +126,9 @@ function generateFavMovieButton(drinkId) {
  * Adding movie to favorites by given movieId
  */
 function addToFavourites(drinkId) {
-  let favdrink = _drinks.find((drink) => drink.id === drinkId);
-  _favDrinks.push(favdrink);
-  appendDrinks(_drinks); // update the DOM to display the right button
+  let favdrink = _drinks.find((drink) => drink.id == drinkId);
+  _favDrinks.push(favdrink); //te the DOM to display the right button
+  showDrink(drinkId);
   appendFavDrinks(); // update the DOM to display the right items from the _favMovies list
 }
 
@@ -135,8 +136,8 @@ function addToFavourites(drinkId) {
  * Removing movie from favorites by given drinkId
  */
 function removeFromFavourites(drinkId) {
-  _favDrinks = _favDrinks.filter((drink) => drink.id !== drinkId);
-  appendDrinks(_drinks); // update the DOM to display the right button
+  _favDrinks = _favDrinks.filter((drink) => drink.id != drinkId);
+  showDrink(drinkId);
   appendFavDrinks(); // update the DOM to display the right items from the _favMovies list
 }
 
@@ -144,9 +145,8 @@ function removeFromFavourites(drinkId) {
  * Checking if movie already is added to _favMovies
  */
 function isFavDrink(drinkId) {
-  return _favDrinks.find((drink) => drink.id === drinkId); // checking if _favMovies has the movie with matching id or not
+  return _favDrinks.find((drink) => drink.id == drinkId); // checking if _favMovies has the movie with matching id or not
 }
-
 
 // ========== Grab ingredients ==========
 
@@ -160,18 +160,32 @@ function ingredientsList(drink) {
   return html;
 }
 
-// COPY
-function multiply(drink) {
+function multiply(value, drinkId) {
   let servingsInput = document.querySelector("#servingsAmount").value;
+  let drink = _drinks.find((drink) => drink.id == drinkId);
+  let htmlD = "";
+  for (const ingredient of drink.ingredients) {
+    let endeligeResultat = ingredient.amount * servingsInput;
+    htmlD += /*html*/ `
+    <p class="${ingredient.name} ingredient-button">${endeligeResultat} cl <span class="langlinje">|</span> ${ingredient.name}</p>
+    `;
+  }
+  return htmlD;
+}
+/*
+  console.log(1 * drink.ingredients);
+  console.log(drink.ingredients);
+  console.log(drink);
+  console.log(value);
   console.log(servingsInput);
-  /*
+*/
+/*
   let ingredientsAmount = ${ingredientsList()};
   /*
   let ingredientAmount = drinks.ingredients.amount;
   let servingsResult = servingsInput * ingredientAmount;
   console.log();
   */
-}
 /*
 function multiplyServings() {
   let inputServing = document.querySelector("#servingsAmount");
@@ -185,7 +199,6 @@ function multiplyServings() {
   console.log(result);
   }
 */
-
 
 function optionalList(drink) {
   let htmlOptional = "";
@@ -270,26 +283,92 @@ function closeNav() {
 
 // ========= From Discover cards to chosen category ========= //
 function filterByKeyword(keyword) {
-  const filteredDrinks = _drinks.filter(drink => {
-    const result = drink.categories.find(category => {
-      return category === keyword
-    })
-    return result
+  const filteredDrinks = _drinks.filter((drink) => {
+    const result = drink.categories.find((category) => {
+      return category === keyword;
+    });
+    return result;
   });
 
   document.getElementById("category-title").innerText = keyword;
-  
-  document.getElementById("alcohol-test").innerHTML = filteredDrinks.map(drink => {
-    return `<div class="vodka-card">${drink.name}</div>`
-  }).join("");
 
-//   document.querySelector("body").innerHTML = `
-//   <section id="category" class="page">
-//   <div class="discover-top">
-//     <i class="fas fa-arrow-left"></i>
-//     <h1>SDFSDFSDF</h1>
-//   </div>
-// </section>`;
+  document.getElementById("alcohol-test").innerHTML = filteredDrinks
+    .map((drink) => {
+      return `<div class="vodka-page-cards" onclick="showDrink('${drink.id}')">
+      <div class="vodka-content">
+      <div class="card-border">
+      <img src="${drink.img}">
+      <p>${drink.name}</p>
+      </div>
+      </div>
+      </div>`;
+    })
+    .join("");
+
   navigateTo("#/category");
-  return filteredDrinks
+  return filteredDrinks;
+}
+
+function showDrink() {
+  console.log();
+}
+
+function showDrink(id) {
+  const drink = _drinks.find((drink) => drink.id == id);
+  document.querySelector("#chosen-drink").innerHTML = /*html*/ `
+      <article class="drink-card">
+          <div class="drinks-top">
+          <span class="arrow">
+          <i class="fas fa-arrow-left"></i>
+          </span>
+            <div class="drink-top-name">
+              <h3>${drink.name}</h3><br>
+              <p>${drink.strength} strength</p>
+            </div>
+            <span class="favheart">
+              ${generateFavMovieButton(drink.id)}
+              <!-- COPY -->
+              <label for="servingsAmount">Servings amount:
+              <select id="servingsAmount" onchange="multiply(this.value, ${
+                drink.id
+              })">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </label>
+
+           </span>
+          </div>
+      <div class="drinks-mid">
+        <img class="drink-img" src="${drink.img}">
+      </div>
+          <div class="drinks-bottom">
+            <div class="ingredients">
+           <h4>Ingredients</h4>
+            ${ingredientsList(drink)}
+            </div>
+
+        <div class="optional">
+        <h4>Optional</h4>
+        ${optionalList(drink)}
+          </div>
+
+      </div>
+        <div class="drinks-card-bottom"></div>
+        <div class="card-approach">
+
+        <div class="approach-description">
+        </div>
+
+        <div class="approach-navigation">
+  <a><i class="fas fa-arrow-circle-left fa-3x"></i></a>
+  <a><i class="fas fa-arrow-circle-right fa-3x"></i></a>
+  </div>
+  
+  </div>
+        </div>
+      </article>
+    `;
+  navigateTo("#/specific-drink");
 }

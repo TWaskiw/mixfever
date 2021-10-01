@@ -255,16 +255,19 @@ img {
   }
 }
 
+.rm {
+  display: none;
+}
 /* ---------- grid container styling ---------- */
 
-.grid-container>article {
+.grid-container > article {
   text-align: center;
   padding: 2em 1em;
   background-color: var(--white);
   transition: 0.3s;
 }
 
-.grid-container>article:hover {
+.grid-container > article:hover {
   box-shadow: 0 8px 16px 0 var(--green-opacity);
 }
 
@@ -434,7 +437,7 @@ img {
   }
 }
 
-/* ---------- discover styling ---------- */
+/* ---------- discover styling start ---------- */
 .discover-top {
   display: flex;
   margin: 0;
@@ -446,30 +449,238 @@ img {
   display: block;
   margin: auto;
 }
-
+/*-------------alcohol---------------------*/
 .alcohol {
   display: flex;
   justify-content: space-around;
   flex-direction: row;
 }
 
+.alcohol-section h4 {
+  margin-left: -70%;
+  font-family: "Rambla", sans-serif;
+  margin-bottom: 3px;
+  font-size: 28px;
+}
+
 .vodka-card {
   width: 120px;
   height: 200px;
-  background-color: aqua;
+  background-color: #e0e0e0;
   border-radius: 10px;
+  -webkit-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  -moz-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+}
+.vodka-card h5 {
+  display: block;
+  margin: auto;
+  margin-top: -15px;
 }
 
 .gin-card {
   width: 120px;
   height: 200px;
-  background-color: aqua;
+  background-color: #e6ffff;
   border-radius: 10px;
+  -webkit-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  -moz-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+}
+
+.gin-card h5 {
+  display: block;
+  margin: auto;
+  margin-top: -15px;
+}
+
+.gin-card img {
+  max-width: 42% !important;
+  height: auto;
 }
 
 .whiterum-card {
   width: 120px;
   height: 200px;
-  background-color: aqua;
+  background-color: #e0e0e0;
   border-radius: 10px;
+  -webkit-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  -moz-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+}
+
+.whiterum-card h5 {
+  display: block;
+  margin: auto;
+  margin-top: -16px;
+}
+
+.alcohol img {
+  max-width: 30%;
+  max-height: auto;
+  padding: 30px;
+}
+
+.card-border {
+  border: 2px solid white;
+  border-radius: 10px;
+  width: 85%;
+  height: auto;
+  display: block;
+  margin: auto;
+  margin-top: 5px;
+  opacity: 80%;
+}
+/*-------------Type---------------------*/
+.type {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  margin-top: 30px;
+}
+
+.type img {
+  max-width: 400px;
+  height: auto;
+}
+.type-section h4 {
+  margin-left: -70%;
+  font-family: "Rambla", sans-serif;
+  margin-bottom: 3px;
+  font-size: 28px;
+}
+
+.tropical-card {
+  width: 120px;
+  height: 200px;
+  background-color: #fefee5;
+  border-radius: 10px;
+  -webkit-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  -moz-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+}
+
+.tropical-card h5 {
+  display: block;
+  margin: auto;
+}
+
+.frozen-card {
+  width: 120px;
+  height: 200px;
+  background-color: #e7fcff;
+  border-radius: 10px;
+  -webkit-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  -moz-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+}
+
+.frozen-card h5 {
+  display: block;
+  margin: auto;
+  margin-top: -15px;
+}
+
+.frozen-card img {
+  height: 180px;
+}
+
+.creamy-card {
+  width: 120px;
+  height: 200px;
+  background-color: #ffe4bb;
+  border-radius: 10px;
+  -webkit-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  -moz-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+}
+
+.creamy-card h5 {
+  display: block;
+  margin: auto;
+  padding-bottom: 3px;
+}
+/*-------------Vibe---------------------*/
+.vibe {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  margin-top: 30px;
+}
+
+.vibe-section h4 {
+  margin-left: -70%;
+  font-family: "Rambla", sans-serif;
+  margin-bottom: 3px;
+  font-size: 28px;
+}
+
+.vibe-section h5 {
+  display: block;
+  margin: auto;
+  margin-top: -12px;
+}
+.poolside-card {
+  width: 120px;
+  height: 200px;
+  background-color: #e7fcff;
+  border-radius: 10px;
+  -webkit-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  -moz-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+}
+
+.vibe-section img {
+  height: 180px;
+}
+
+.movie-card {
+  width: 120px;
+  height: 200px;
+  background-color: #f0ffec;
+  border-radius: 10px;
+  -webkit-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  -moz-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+}
+
+.birthday-card {
+  width: 120px;
+  height: 200px;
+  background-color: #ffe7e7;
+  border-radius: 10px;
+  -webkit-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  -moz-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+}
+/* ---------- discover styling End ---------- */
+
+/* ---------- Vodka page start ---------- */
+
+#category-title {
+  font-family: "Dancing Script", cursive;
+}
+.vodka-page-cards {
+  width: 120px;
+  height: 200px;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+}
+
+.vodka-content {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.vodka-content img {
+  max-width: 60% !important;
+  height: 116.5px;
+}
+
+.vodka-content p {
+  display: block;
+  margin: auto;
+  margin-top: -12px;
+  font-size: 13px;
+  padding-bottom: 5px;
 }
