@@ -70,32 +70,67 @@
     <!-- pages -->
     <!-- users page -->
     <section id="home" class="page">
-      <div id="grid-drinks" class="grid-container"></div>
+      <div id="search-frontpage" class="grid-container">
+        <h1>Search</h1>
+        <div class="search-function">
+          <article class="ingredient-sections">
+            <button onclick="reset()">Reset</button>
+            <h4>Liquor</h4>
+            <button
+              onclick="filterByIngredient('Vodka')"
+              class="Vodka"
+              id="vodkaIngredient"
+            >
+              Vodka
+            </button>
+            <button
+              onclick="filterByIngredient('Gin')"
+              class="Gin"
+              id="ginIngredient"
+            >
+              Gin
+            </button>
+          </article>
+          <article class="ingredient-sections">
+            <h4>Juice</h4>
+            <button
+              onclick="filterByIngredient('Orange juice')"
+              class="Orange"
+              id="orangeIngredient"
+            >
+              Orange Juice
+            </button>
+          </article>
+        </div>
+        <div class="search-result" id="search-result"></div>
+      </div>
     </section>
 
     <!-- Discover page -->
     <section class="discover page" id="discover">
       <div class="discover-section">
         <div class="discover-top">
-          <i class="fas fa-arrow-left"></i>
+          <button onclick="goBack()">
+            <i class="fas fa-arrow-left"></i>
+          </button>
           <h3>Discover</h3>
         </div>
         <div class="alcohol-section">
           <h4>Alcohol</h4>
           <div class="alcohol">
-            <div class="vodka-card" onclick="filterByKeyword('vodka')">
+            <div class="vodka-card" onclick="filterByKeyword('Vodka')">
               <div class="card-border">
                 <img src="img/vodka.svg" alt="vodka" />
                 <h5>Vodka</h5>
               </div>
             </div>
-            <div class="gin-card" onclick="filterByKeyword('gin')">
+            <div class="gin-card" onclick="filterByKeyword('Gin')">
               <div class="card-border">
                 <img src="img/gin.svg" alt="" />
                 <h5>Gin</h5>
               </div>
             </div>
-            <div class="whiterum-card" onclick="filterByKeyword('white rum')">
+            <div class="whiterum-card" onclick="filterByKeyword('White rum')">
               <div class="card-border">
                 <img src="img/white rum-1 1.svg" alt="" />
                 <h5>White Rum</h5>
@@ -106,19 +141,19 @@
         <div class="type-section">
           <h4>Type</h4>
           <div class="type">
-            <div class="tropical-card" onclick="filterByKeyword('tropical')">
+            <div class="tropical-card" onclick="filterByKeyword('Tropical')">
               <div class="card-border">
                 <img src="img/tropical 1.svg" alt="tropical" />
                 <h5>Tropical</h5>
               </div>
             </div>
-            <div class="frozen-card" onclick="filterByKeyword('frozen')">
+            <div class="frozen-card" onclick="filterByKeyword('Frozen')">
               <div class="card-border">
                 <img src="img/Frozen 1.svg" alt="frozen" />
                 <h5>Frozen</h5>
               </div>
             </div>
-            <div class="creamy-card" onclick="filterByKeyword('creamy')">
+            <div class="creamy-card" onclick="filterByKeyword('Creamy')">
               <div class="card-border">
                 <img src="img/creamy 1.svg" alt="creamy" />
                 <h5>Creamy</h5>
@@ -130,19 +165,19 @@
         <div class="vibe-section">
           <h4>Vibe</h4>
           <div class="vibe">
-            <div class="poolside-card" onclick="filterByKeyword('poolside')">
+            <div class="poolside-card" onclick="filterByKeyword('Poolside')">
               <div class="card-border">
                 <img src="img/limoncellaMule 1.svg" alt="Limoncella mule" />
                 <h5>Poolside</h5>
               </div>
             </div>
-            <div class="movie-card" onclick="filterByKeyword('movie')">
+            <div class="movie-card" onclick="filterByKeyword('Movie')">
               <div class="card-border">
                 <img src="img/appleCider 1.svg" alt="Apple Cider" />
                 <h5>Movie Night</h5>
               </div>
             </div>
-            <div class="birthday-card" onclick="filterByKeyword('birthday')">
+            <div class="birthday-card" onclick="filterByKeyword('Birthday')">
               <div class="card-border">
                 <img src="img/oldGlory 1.svg" alt="Old Glory" />
                 <h5>Birthday Party</h5>
@@ -161,7 +196,7 @@
     <!-- Chosen category from Discover -->
     <section id="category" class="page">
       <div class="discover-top">
-        <i class="fas fa-arrow-left"></i>
+        <button onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
         <h1 id="category-title"></h1>
       </div>
       <div class="alcohol" id="alcohol-test"></div>
@@ -170,7 +205,7 @@
     <!-- Drink category -->
     <section id="drink" class="page">
       <div class="discover-top">
-        <i class="fas fa-arrow-left"></i>
+        <button onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
         <h1 id="category-title"></h1>
       </div>
       <div class="alcohol" id="alcohol-test"></div>

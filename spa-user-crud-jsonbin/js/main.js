@@ -2,7 +2,8 @@
 
 let _drinks = [];
 let _selectedDrinkId;
-const _baseUrl = "https://api.jsonbin.io/v3/b/61517eb24a82881d6c5637e3";
+let _filteredIngredients = [];
+const _baseUrl = "https://api.jsonbin.io/v3/b/6156f83aaa02be1d44522307";
 
 const _headers = {
   "X-Master-Key":
@@ -24,66 +25,54 @@ async function loadDrinks() {
 }
 loadDrinks();
 
-function appendDrinks(drinks) {
-  let htmlTemplate = "";
-  for (let drink of drinks) {
-    htmlTemplate += /*html*/ `
-      <article class="drink-card">
-          <div class="drinks-top">
-          <span class="arrow">
-          <i class="fas fa-arrow-left"></i>
-          </span>
-            <div class="drink-top-name">
-              <h3>${drink.name}</h3><br>
-              <p>${drink.strength} strength</p>
-            </div>
-            <span class="favheart">
-              ${generateFavMovieButton(drink.id)}
-              <!-- COPY -->
-              <label for="servingsAmount">Servings amount:
-              <select id="servingsAmount" onchange="multiply(this.value, ${
-                drink.id
-              })">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-              </select>
-            </label>
+// Appending objects to the DOM
+// function filterByIngredient(drinks) {
+//   //document.querySelector("#search-frontpage").innerHTML = ""; // clear content of grid teachers
+//   let htmlTemplateIng = "";
+//   for (let ok of drinks) {
+//     htmlTemplateIng += /*html*/ `
+//     <button onclick="${appendDrinks(drinks)}"></button>
+//     <p>hej</p>
+//     `;
+//   }
+//   document.querySelector("#search-frontpage").innerHTML = htmlTemplateIng;
+// }
 
-           </span>
-          </div>
-      <div class="drinks-mid">
-        <img class="drink-img" src="${drink.img}">
-      </div>
-          <div class="drinks-bottom">
-            <div class="ingredients">
-           <h4>Ingredients</h4>
-            ${ingredientsList(drink)}
-            </div>
-
-        <div class="optional">
-        <h4>Optional</h4>
-        ${optionalList(drink)}
-          </div>
-
-      </div>
-        <div class="drinks-card-bottom"></div>
-        <div class="card-approach">
-
-        <div class="approach-description">
-        </div>
-
-        <div class="approach-navigation">
-  <a><i class="fas fa-arrow-circle-left fa-3x"></i></a>
-  <a><i class="fas fa-arrow-circle-right fa-3x"></i></a>
-  </div>
-  
-  </div>
-        </div>
-      </article>
-      `;
+function filterByIngredient(keyword) {
+  let filteredDrinks = [];
+  for (let drink of _drinks) {
+    for (const ingredient of drink.ingredients) {
+      if (ingredient.name === keyword) {
+        filteredDrinks.push(drink);
+      }
+    }
   }
-  document.querySelector("#chosen-drink").innerHTML = htmlTemplate;
+  console.log(filteredDrinks);
+  appendDrinkSearch(filteredDrinks);
+}
+
+function appendDrinkSearch(drinks) {
+  let htmlDrinks = "";
+  for (const filteredDrink of drinks) {
+    htmlDrinks += /*html*/ `
+    <article>
+      <img src="${filteredDrink.img}">
+      <h3>${filteredDrink.name}</h3><br>
+      <p>${filteredDrink.strength} strength</p>
+    </article>
+    `;
+  }
+  document.querySelector("#search-result").innerHTML = htmlDrinks;
+}
+
+function reset() {
+  appendDrinkSearch(drinks);
+}
+
+function appendDrinks(drinks) {
+  for (let drink of drinks) {
+    console.log(drink);
+  }
   showLoader(false);
 }
 
@@ -159,10 +148,9 @@ function ingredientsList(drink) {
   }
   return html;
 }
-
 function multiply(value, drinkId) {
   let servingsInput = document.querySelector("#servingsAmount").value;
-  let drink = _drinks.find((drink) => drink.id == drinkId);
+  let drink = _drinks.find((drink) => drink.id === drinkId);
   let htmlD = "";
   for (const ingredient of drink.ingredients) {
     let endeligeResultat = ingredient.amount * servingsInput;
@@ -170,36 +158,8 @@ function multiply(value, drinkId) {
     <p class="${ingredient.name} ingredient-button">${endeligeResultat} cl <span class="langlinje">|</span> ${ingredient.name}</p>
     `;
   }
-  return htmlD;
+  document.querySelector("#ingredientSubmit").innerHTML = htmlD;
 }
-/*
-  console.log(1 * drink.ingredients);
-  console.log(drink.ingredients);
-  console.log(drink);
-  console.log(value);
-  console.log(servingsInput);
-*/
-/*
-  let ingredientsAmount = ${ingredientsList()};
-  /*
-  let ingredientAmount = drinks.ingredients.amount;
-  let servingsResult = servingsInput * ingredientAmount;
-  console.log();
-  */
-/*
-function multiplyServings() {
-  let inputServing = document.querySelector("#servingsAmount");
-}
-*/
-/*
-function multiplyServings() {
-  let servingOption = document.getElementById("#servingsAmount");
-  let servingValue = servingOption.value;
-  let result = servingValue * 10;
-  console.log(result);
-  }
-*/
-
 function optionalList(drink) {
   let htmlOptional = "";
   if (drink.citron === "true") {
@@ -257,7 +217,7 @@ async function updateJSONBIN(drinks) {
   const result = await response.json(); // the new updated drinks array from jsonbin
   console.log(result);
   //updating the DOM with the new fetched drinks
-  appendDrinks(result.record);
+  // appendDrinks(result.record);
 }
 
 // ========== Loader ==========
@@ -309,17 +269,13 @@ function filterByKeyword(keyword) {
   return filteredDrinks;
 }
 
-function showDrink() {
-  console.log();
-}
-
 function showDrink(id) {
   const drink = _drinks.find((drink) => drink.id == id);
   document.querySelector("#chosen-drink").innerHTML = /*html*/ `
       <article class="drink-card">
           <div class="drinks-top">
           <span class="arrow">
-          <i class="fas fa-arrow-left"></i>
+        <button onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
           </span>
             <div class="drink-top-name">
               <h3>${drink.name}</h3><br>
@@ -328,15 +284,6 @@ function showDrink(id) {
             <span class="favheart">
               ${generateFavMovieButton(drink.id)}
               <!-- COPY -->
-              <label for="servingsAmount">Servings amount:
-              <select id="servingsAmount" onchange="multiply(this.value, ${
-                drink.id
-              })">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-              </select>
-            </label>
 
            </span>
           </div>
@@ -344,9 +291,21 @@ function showDrink(id) {
         <img class="drink-img" src="${drink.img}">
       </div>
           <div class="drinks-bottom">
+          <div class="servings-ingredients">
+          <label class="servingAmount" for="servingsAmount">
+              <select id="servingsAmount" onchange="multiply(this.value, ${
+                drink.id
+              })">
+                <option value="" selected disabled>Select..</option>
+                <option value="1">1 serving</option>
+                <option value="2">2 servings</option>
+                <option value="3">3 servings</option>
+              </select>
+            </label>
             <div class="ingredients">
            <h4>Ingredients</h4>
-            ${ingredientsList(drink)}
+           <div id="ingredientSubmit"></div>
+            </div>
             </div>
 
         <div class="optional">
@@ -371,4 +330,8 @@ function showDrink(id) {
       </article>
     `;
   navigateTo("#/specific-drink");
+}
+
+function goBack() {
+  window.history.back();
 }

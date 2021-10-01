@@ -12,6 +12,12 @@
   --text-color-in-stock: rgb(172, 198, 201);
 }
 
+@media screen and (min-width: 1024px) {
+  body {
+    padding: 0 20vw;
+  }
+}
+
 /* ---------- ingredients---------- */
 .Vodka {
   background-color: #ffffff;
@@ -288,6 +294,8 @@ img {
   display: flex;
   justify-content: space-between;
   font-family: "Rambla", sans-serif;
+  margin-right: 6%;
+  margin-left: 6%;
 }
 
 .drinks-top h3 {
@@ -336,7 +344,12 @@ img {
 .drinks-bottom {
   display: flex;
   justify-content: space-between;
-  margin: 7vh 0;
+  margin: 6%;
+}
+
+.servings-ingredients {
+  display: flex;
+  flex-direction: column;
 }
 
 .card-approach {
@@ -471,7 +484,23 @@ img {
   -webkit-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
   -moz-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
   box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
+
+.vodka-card:hover,
+.gin-card:hover,
+.whiterum-card:hover,
+.tropical-card:hover,
+.frozen-card:hover,
+.creamy-card:hover,
+.poolside-card:hover,
+.movie-card:hover,
+.birthday-card:hover {
+  opacity: 80%;
+  margin-top: -5px;
+}
+
 .vodka-card h5 {
   display: block;
   margin: auto;
@@ -486,6 +515,8 @@ img {
   -webkit-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
   -moz-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
   box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 .gin-card h5 {
@@ -507,6 +538,8 @@ img {
   -webkit-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
   -moz-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
   box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 .whiterum-card h5 {
@@ -558,6 +591,8 @@ img {
   -webkit-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
   -moz-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
   box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 .tropical-card h5 {
@@ -573,6 +608,8 @@ img {
   -webkit-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
   -moz-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
   box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 .frozen-card h5 {
@@ -593,6 +630,8 @@ img {
   -webkit-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
   -moz-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
   box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 .creamy-card h5 {
@@ -606,6 +645,7 @@ img {
   justify-content: space-around;
   flex-direction: row;
   margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .vibe-section h4 {
@@ -628,6 +668,8 @@ img {
   -webkit-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
   -moz-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
   box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 .vibe-section img {
@@ -642,6 +684,8 @@ img {
   -webkit-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
   -moz-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
   box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 .birthday-card {
@@ -652,6 +696,8 @@ img {
   -webkit-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
   -moz-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
   box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 /* ---------- discover styling End ---------- */
 
@@ -659,12 +705,22 @@ img {
 
 #category-title {
   font-family: "Dancing Script", cursive;
+  display: block;
+  margin: auto;
+  font-size: 50px;
 }
 .vodka-page-cards {
   width: 120px;
   height: 200px;
   background-color: #e0e0e0;
   border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.vodka-page-cards:hover {
+  opacity: 80%;
+  margin-top: -5px;
 }
 
 .vodka-content {
@@ -673,7 +729,7 @@ img {
 }
 
 .vodka-content img {
-  max-width: 60% !important;
+  max-width: 50% !important;
   height: 116.5px;
 }
 
@@ -683,4 +739,8 @@ img {
   margin-top: -12px;
   font-size: 13px;
   padding-bottom: 5px;
+}
+
+.search-function {
+  background-color: #ededed;
 }
