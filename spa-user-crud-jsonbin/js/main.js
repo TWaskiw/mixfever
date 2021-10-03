@@ -1,8 +1,7 @@
 // ========== GLOBAL VARIABLES =========
 
 let _drinks = [];
-let _selectedDrinkId;
-let _filteredIngredients = [];
+let _favDrinks = [];
 const _baseUrl = "https://api.jsonbin.io/v3/b/6156f83aaa02be1d44522307";
 
 const _headers = {
@@ -11,10 +10,9 @@ const _headers = {
   "Content-Type": "application/json",
 };
 
-// ========== READ ==========
-
+// ========== Fetch drinks fra JSONbin ==========
 async function loadDrinks() {
-  const url = _baseUrl + "/latest"; // make sure to get the latest version
+  const url = _baseUrl + "/latest";
   const response = await fetch(url, {
     headers: _headers,
   });
@@ -25,19 +23,7 @@ async function loadDrinks() {
 }
 loadDrinks();
 
-// Appending objects to the DOM
-// function filterByIngredient(drinks) {
-//   //document.querySelector("#search-frontpage").innerHTML = ""; // clear content of grid teachers
-//   let htmlTemplateIng = "";
-//   for (let ok of drinks) {
-//     htmlTemplateIng += /*html*/ `
-//     <button onclick="${appendDrinks(drinks)}"></button>
-//     <p>hej</p>
-//     `;
-//   }
-//   document.querySelector("#search-frontpage").innerHTML = htmlTemplateIng;
-// }
-
+// ========== Filtrere drinks udfra brugerens valg af ingrediens ==========
 function filterByIngredient(keyword) {
   let filteredDrinks = [];
   for (let drink of _drinks) {
@@ -51,15 +37,51 @@ function filterByIngredient(keyword) {
   appendDrinkSearch(filteredDrinks);
 }
 
+// ========== Looper gennem drinks, finder ingredienser og displayer dem i DOM'en ==========
+function ingredientsList(drink) {
+  let html = "";
+  for (const ingredient of drink.ingredients) {
+    html += /*html*/ `
+    <p class="${ingredient.name} ingredient-button">${ingredient.amount} cl <span class="langlinje">|</span> ${ingredient.name}</p>
+    `;
+  }
+  return html;
+}
+
+// ========== Looper gennem drinks, finder ingredienser og displayer dem i DOM'en - lavet til ingredienser på forsiden ==========
+function ingredientsFront(drink) {
+  let html = "";
+  for (const ingredient of drink.ingredients) {
+    html += /*html*/ `
+    <p class="${ingredient.name} ingredient-front">${ingredient.amount} cl <span class="langlinje">|</span> ${ingredient.name}</p>
+    `;
+  }
+  return html;
+}
+
+// Vi appender de filtrerede drinks til DOM'en
 function appendDrinkSearch(drinks) {
   let htmlDrinks = "";
   for (const filteredDrink of drinks) {
     htmlDrinks += /*html*/ `
-    <article>
-      <img src="${filteredDrink.img}">
-      <h3>${filteredDrink.name}</h3><br>
-      <p>${filteredDrink.strength} strength</p>
-    </article>
+    <article class="result-section" onclick="showDrink('${filteredDrink.id}')">
+      <div class="result-card">
+      
+        <div class="${filteredDrink.name} drinkbg">
+          <img src="${filteredDrink.img}">
+        </div>
+        <div class="name-ingredients">
+          <h3>${filteredDrink.name}</h3>
+          <p class="result-ingredient">Ingredients:</p>
+          <p>${ingredientsFront(filteredDrink)}</p>
+          
+        <div class="difficulty-section">
+          <p class="difficulty-p">Difficulty:</p>
+          <p></p>
+          </div>
+        </div>
+      </div>
+    </article>  
     `;
   }
   document.querySelector("#search-result").innerHTML = htmlDrinks;
@@ -76,9 +98,7 @@ function appendDrinks(drinks) {
   showLoader(false);
 }
 
-/* Append fav drinks */
-let _favDrinks = [];
-
+// ========== Append favoritiseret drink til favorit siden ==========
 function appendFavDrinks() {
   let htmlFav = "";
   for (const drink of _favDrinks) {
@@ -87,21 +107,19 @@ function appendFavDrinks() {
       <article>
         <h2>${drink.name} (${drink.strength})</h2>
         <img src="${drink.img}">
-        ${generateFavMovieButton(drink.id)}
+        ${generateFavDrinkButton(drink.id)}
       </article>
     `;
   }
-  // if no movies display a default text
+  // hvis der ikke er nogle favoritiseret drink, fortæller vi brugeren det
   if (_favDrinks.length === 0) {
     htmlFav = "<p>No drinks added to favorites</p>";
   }
   document.querySelector("#fav-drink-container").innerHTML = htmlFav;
 }
 
-/**
- * Generating the fav button
- */
-function generateFavMovieButton(drinkId) {
+// Vi genererer "tilføj til favorit" hjerte-knappen og displayer i DOM'en
+function generateFavDrinkButton(drinkId) {
   let btnTemplate = `
     <i class="far fa-heart" onclick="addToFavourites('${drinkId}')"></i>`;
   if (isFavDrink(drinkId)) {
@@ -111,43 +129,27 @@ function generateFavMovieButton(drinkId) {
   return btnTemplate;
 }
 
-/**
- * Adding movie to favorites by given movieId
- */
+// Appender  drink ud fra det valgte ID
 function addToFavourites(drinkId) {
   let favdrink = _drinks.find((drink) => drink.id == drinkId);
-  _favDrinks.push(favdrink); //te the DOM to display the right button
+  _favDrinks.push(favdrink);
   showDrink(drinkId);
-  appendFavDrinks(); // update the DOM to display the right items from the _favMovies list
+  appendFavDrinks(); // "skyder" den valgte drink ind i funktionen der står for at append de favoritiserede drinks
 }
 
-/**
- * Removing movie from favorites by given drinkId
- */
+// Fjerner drink igen, ud fra givet ID
 function removeFromFavourites(drinkId) {
   _favDrinks = _favDrinks.filter((drink) => drink.id != drinkId);
   showDrink(drinkId);
-  appendFavDrinks(); // update the DOM to display the right items from the _favMovies list
+  appendFavDrinks(); // vi opdatere igen den ansvarlige append-funktion, og fjerner drinken
 }
 
-/**
- * Checking if movie already is added to _favMovies
- */
+// Tjekker om det globale favDrinks array har et ID der matcher
 function isFavDrink(drinkId) {
   return _favDrinks.find((drink) => drink.id == drinkId); // checking if _favMovies has the movie with matching id or not
 }
 
-// ========== Grab ingredients ==========
-
-function ingredientsList(drink) {
-  let html = "";
-  for (const ingredient of drink.ingredients) {
-    html += /*html*/ `
-    <p class="${ingredient.name} ingredient-button">${ingredient.amount} cl <span class="langlinje">|</span> ${ingredient.name}</p>
-    `;
-  }
-  return html;
-}
+// Ud fra bruger-valgte oplysninger om antal serveringer, beregner vi en ny opskrift
 function multiply(value, drinkId) {
   let servingsInput = document.querySelector("#servingsAmount").value;
   let drink = _drinks.find((drink) => drink.id === drinkId);
@@ -160,68 +162,30 @@ function multiply(value, drinkId) {
   }
   document.querySelector("#ingredientSubmit").innerHTML = htmlD;
 }
+
+// Tjekker vores JSON data, om citron, is eller shaker skal rekommenderes til drinken
 function optionalList(drink) {
   let htmlOptional = "";
   if (drink.citron === "true") {
     htmlOptional += /*html*/ `
-      <img src="https://5.imimg.com/data5/PP/CF/MY-49449950/mineral-water-ice-cubes-500x500.jpg">
+    <img src="./img/Group 142.svg" class="iceoptional">
       `;
   }
   if (drink.ice === "true") {
     htmlOptional += /*html*/ `
-      <img src="https://5.imimg.com/data5/PP/CF/MY-49449950/mineral-water-ice-cubes-500x500.jpg">
+    <img src="./img/ice.svg" class="shakeroptional">
       `;
   }
   if (drink.shaker === "true") {
     htmlOptional += /*html*/ `
-      <img src="https://5.imimg.com/data5/PP/CF/MY-49449950/mineral-water-ice-cubes-500x500.jpg">
+    <img src="./img/Group 144.svg" class="lemonoptional">
       `;
   }
   return htmlOptional;
 }
 
-async function createDrinks() {
-  showLoader(true);
-  // references to input fields
-  let nameInput = document.querySelector("#name");
-  let mailInput = document.querySelector("#mail");
-  // dummy generated user id
-  const drinkId = Date.now();
-  // declaring a new user object
-  let newDrink = {
-    name: nameInput.value,
-    mail: mailInput.value,
-    id: drinkId,
-  };
-  // pushing the new user object to the _drinks array
-  _drinks.push(newDrink);
-  // wait for update
-  await updateJSONBIN(_drinks);
-  // reset
-  nameInput.value = "";
-  mailInput.value = "";
-  //navigating back
-  navigateTo("#/");
-}
-
-// ========== Services ==========
-
-async function updateJSONBIN(drinks) {
-  // put drinks array to jsonbin
-  let response = await fetch(_baseUrl, {
-    method: "PUT",
-    headers: _headers,
-    body: JSON.stringify(drinks),
-  });
-  // waiting for the result
-  const result = await response.json(); // the new updated drinks array from jsonbin
-  console.log(result);
-  //updating the DOM with the new fetched drinks
-  // appendDrinks(result.record);
-}
-
 // ========== Loader ==========
-// to show and hide the loader
+// show and hide loader
 function showLoader(show) {
   let loader = document.getElementById("loader");
   if (show) {
@@ -231,17 +195,19 @@ function showLoader(show) {
   }
 }
 
-/* Open when someone clicks on the span element */
+// ==== Burger-menu ====
+// åben burger-menu når der klikkes
 function openNav() {
   document.getElementById("myNav").style.width = "100%";
 }
 
-/* Close when someone clicks on the "x" symbol inside the overlay */
+// luk burger-menu når der klikkes på "x"
 function closeNav() {
   document.getElementById("myNav").style.width = "0%";
 }
 
-// ========= From Discover cards to chosen category ========= //
+// ========= Discover ========= //
+// Filterer i drinks ud fra det keyword brugeren trykker på i Discover
 function filterByKeyword(keyword) {
   const filteredDrinks = _drinks.filter((drink) => {
     const result = drink.categories.find((category) => {
@@ -250,6 +216,7 @@ function filterByKeyword(keyword) {
     return result;
   });
 
+  // Append de filtrerede drinks
   document.getElementById("category-title").innerText = keyword;
 
   document.getElementById("alcohol-test").innerHTML = filteredDrinks
@@ -269,39 +236,38 @@ function filterByKeyword(keyword) {
   return filteredDrinks;
 }
 
+// Udfra drinken brugeren nu vælger under discover, appender vi den valgte drink ud fra ID'et.
 function showDrink(id) {
   const drink = _drinks.find((drink) => drink.id == id);
   document.querySelector("#chosen-drink").innerHTML = /*html*/ `
-      <article class="drink-card">
+  <article class="drink-card ${drink.name}-color">
           <div class="drinks-top">
           <span class="arrow">
-        <button onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
+        <button onclick="goBack()" class="back-button"><i class="fas fa-arrow-left"></i></button>
           </span>
             <div class="drink-top-name">
               <h3>${drink.name}</h3><br>
               <p>${drink.strength} strength</p>
             </div>
             <span class="favheart">
-              ${generateFavMovieButton(drink.id)}
-              <!-- COPY -->
-
+              ${generateFavDrinkButton(drink.id)}
            </span>
           </div>
       <div class="drinks-mid">
         <img class="drink-img" src="${drink.img}">
       </div>
+      <div class="servingcontainer">
+      <label class="servingAmount" for="servingsAmount">
+      <select id="servingsAmount" onchange="multiply(this.value, ${drink.id})">
+        <option value="" selected disabled>Select..</option>
+        <option value="1">1 serving</option>
+        <option value="2">2 servings</option>
+        <option value="3">3 servings</option>
+      </select>
+    </label>
+    </div>
           <div class="drinks-bottom">
           <div class="servings-ingredients">
-          <label class="servingAmount" for="servingsAmount">
-              <select id="servingsAmount" onchange="multiply(this.value, ${
-                drink.id
-              })">
-                <option value="" selected disabled>Select..</option>
-                <option value="1">1 serving</option>
-                <option value="2">2 servings</option>
-                <option value="3">3 servings</option>
-              </select>
-            </label>
             <div class="ingredients">
            <h4>Ingredients</h4>
            <div id="ingredientSubmit"></div>
@@ -310,20 +276,17 @@ function showDrink(id) {
 
         <div class="optional">
         <h4>Optional</h4>
-        ${optionalList(drink)}
+        <div class="optionalIngredients">${optionalList(drink)}</div>
           </div>
 
       </div>
-        <div class="drinks-card-bottom"></div>
         <div class="card-approach">
 
         <div class="approach-description">
+        <p>${drink.approach[0]}</p>
+        <div class="button-popup">
+        <button class="approach-popup" onclick="stepByStep()">Step by step  <i class="fas fa-expand-alt"></i></button></div>
         </div>
-
-        <div class="approach-navigation">
-  <a><i class="fas fa-arrow-circle-left fa-3x"></i></a>
-  <a><i class="fas fa-arrow-circle-right fa-3x"></i></a>
-  </div>
   
   </div>
         </div>
@@ -332,6 +295,11 @@ function showDrink(id) {
   navigateTo("#/specific-drink");
 }
 
+function stepByStep() {
+  alert("Not available at this time!");
+}
+
+//"Tilbage" knapper
 function goBack() {
   window.history.back();
 }

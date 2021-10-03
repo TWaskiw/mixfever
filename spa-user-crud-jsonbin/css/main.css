@@ -17,8 +17,7 @@
     padding: 0 20vw;
   }
 }
-
-/* ---------- ingredients---------- */
+/* ---------- Ingredients styling ---------- */
 .Vodka {
   background-color: #ffffff;
   color: black;
@@ -71,7 +70,7 @@
 
 .Prosecco {
   background-color: #e8e5d8;
-  color: white;
+  color: black;
 }
 
 .Club {
@@ -79,13 +78,72 @@
   color: black;
 }
 
+.Limoncello {
+  background-color: #ffff83;
+  color: black;
+}
+
+.Champagne {
+  background-color: #e8e5d8;
+  color: white;
+}
+
+.Ginger {
+  background-color: #c27f38;
+  color: white;
+}
+
+.Sugar {
+  background-color: #f0f0ec;
+  color: black;
+}
+
+.Cranberry {
+  background-color: #950714;
+  color: white;
+}
+
+.Cointreau {
+  background-color: #c86117;
+  color: white;
+}
+
+.Dry {
+  background-color: #e6e1ca;
+  color: black;
+}
 /* ---------- ingredient button---------- */
 .ingredient-button {
+  margin: 5px;
   padding: 10px;
   border-radius: 10px;
   -webkit-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
   -moz-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
   box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  border: none;
+  transform: 0.3s;
+}
+
+.ingredient-front {
+  font-size: 12px;
+  padding: 8px;
+  margin: 5px;
+  border-radius: 10px;
+}
+
+.ingredient-sections {
+  margin: auto;
+  max-width: 405px;
+}
+
+.ingredient-sections button:hover {
+  -webkit-box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0);
+  -moz-box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0);
+  box-shadow: 0px 0px 0px 0pxs rgba(255, 255, 255, 0);
+}
+
+.ingredient-sections button {
+  cursor: pointer;
 }
 
 .langlinje {
@@ -182,9 +240,70 @@ img {
   min-height: calc(100vh - 110px);
   animation: fadeIn 0.4s;
   /* padding equals height of tabbar and topbar */
-  padding: 55px 0;
 }
 
+/* ---------- Homepage styling start ---------- */
+#home {
+  padding-bottom: 100px;
+}
+
+#home h1 {
+  font-family: "Dancing Script", cursive;
+  font-weight: bold;
+  font-size: 45px;
+  display: block;
+  margin: 0;
+  text-align: start;
+  padding-left: 20px;
+}
+
+#home h2 {
+  font-family: "Rambla", sans-serif;
+  font-weight: bold;
+  font-size: 30px;
+  display: block;
+  margin: 0;
+  text-align: start;
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.search-function {
+  background-color: #ededed;
+  padding: 20px;
+  border-radius: 25px;
+  max-width: 80%;
+  display: block;
+  margin: auto;
+}
+
+#search-frontpage h1 {
+  font-family: "Dancing Script", cursive;
+  font-weight: bold;
+  font-size: 45px;
+  display: block;
+  margin: 0;
+  position: absolute;
+  margin-top: -55px;
+}
+
+.searchbar {
+  border: none;
+  padding: 10px 50px 10px 10px;
+  margin-bottom: 10px;
+}
+
+.searchbar-x {
+  background-color: transparent;
+  border: none;
+}
+
+.frontpage-discover {
+  padding-top: 5vh;
+}
+
+/* ---------- Homepage styling END ---------- */
 /* ---- Drink page ---- */
 .drinks-page-top {
   height: 85vw;
@@ -192,6 +311,10 @@ img {
   bottom: 20px;
   display: flex;
   flex-direction: row;
+}
+
+.drink-card {
+  padding-top: 55px;
 }
 
 /* ---------- logo styling ---------- */
@@ -277,10 +400,8 @@ img {
   box-shadow: 0 8px 16px 0 var(--green-opacity);
 }
 
-.drinks-mid img {
-  width: 100%;
-  max-width: 250px;
-  height: auto;
+.grid-container {
+  padding-top: 55px;
 }
 
 .image-preview {
@@ -289,13 +410,62 @@ img {
   margin: 1em 0;
 }
 
-/* ---------- drinks card styling ---------- */
+/* ---------- Drinks card styling ---------- */
+
+/* Background colors på drink page */
+.Raspberry.Cosmopolitan-color {
+  background-color: #fff3f2;
+}
+
+.Screwdriver-color {
+  background-color: #fcf6ea;
+}
+
+.Gin.Hass-color {
+  background-color: #f8faf3;
+  color: black;
+}
+
+.Tequila.Sunrise-color {
+  background-color: #fcf6ea;
+  color: black;
+}
+
+.Black.Russian-color {
+  background-color: #d8c8ac;
+}
+
+.White.Russian-color {
+  background-color: #f1ebe1;
+}
+
+.Aperol.Spritz-color {
+  background-color: #f9dbd2;
+  color: black;
+}
+
+.Dry.Martini-color {
+  background-color: #ede9e5;
+  color: black;
+}
+
+.Limoncella.Mule-color {
+  background-color: #ffffe5;
+  color: black;
+}
+
+.French-color {
+  background-color: #f5f5f5;
+  color: black;
+}
+
 .drinks-top {
   display: flex;
   justify-content: space-between;
   font-family: "Rambla", sans-serif;
   margin-right: 6%;
   margin-left: 6%;
+  padding-bottom: 20px;
 }
 
 .drinks-top h3 {
@@ -325,6 +495,26 @@ img {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
+}
+
+.drinks-mid img {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+}
+
+.ingredients h4,
+.optional h4 {
+  text-align: left;
+}
+
+.servingcontainer {
+  margin-left: 6%;
+  margin-top: 6%;
+  width: 100%;
+  display: block;
+  text-align: left;
 }
 
 .favheart {
@@ -345,6 +535,7 @@ img {
   display: flex;
   justify-content: space-between;
   margin: 6%;
+  margin-top: 0px;
 }
 
 .servings-ingredients {
@@ -367,14 +558,60 @@ img {
 .approach-description {
   width: 90%;
   margin: 0 auto;
+  margin-bottom: 50px;
   height: 200px;
-  background-color: grey;
+  background-color: white;
   border-radius: 25px;
   max-width: 575px;
+  -webkit-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  -moz-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.58);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .optional img {
-  width: 50px;
+  height: 40px;
+  width: 40px;
+}
+
+.optional {
+  text-align: left;
+  margin-left: 6%;
+}
+
+.optionalIngredients {
+  width: inherit;
+}
+
+.button-popup {
+  display: block;
+}
+
+.approach-popup {
+  background-color: orange;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 5px;
+}
+
+.approach-popup:hover {
+  background-color: white;
+  color: orange;
+  border: 1px solid orange;
+  cursor: pointer;
+}
+
+.back-button {
+  background-color: transparent;
+  color: black;
+  border: none;
+  font-size: large;
+  cursor: pointer;
 }
 
 /* The Overlay (background) */
@@ -449,8 +686,119 @@ img {
     right: 35px;
   }
 }
+/* ---------- Front page styling start ---------- */
+.result-section {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  cursor: pointer;
+}
+
+.result-card {
+  width: 90%;
+  background-color: #ededed;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  font-family: "Rambla", sans-serif;
+  border-radius: 25px;
+}
+
+/* Search function styling on result cards */
+.drinkbg {
+  height: 110px;
+  width: 120px;
+  border-radius: 5%;
+  display: block;
+  float: left;
+}
+
+.Screwdriver {
+  background-color: #f2d7a6;
+}
+
+.Tequila.Sunrise {
+  background-color: #fcf6ea;
+}
+
+.Black.Russian {
+  background-color: #e1d4be;
+}
+
+.White.Russian {
+  background-color: #e1d4be;
+}
+
+.Limoncella.Mule {
+  background-color: #f2d7a6;
+}
+
+.Raspberry.Cosmopolitan {
+  background-color: #ffe2de;
+}
+
+.French {
+  background-color: #e6e1ca;
+  padding-top: 20px;
+}
+
+.Gin.Hass {
+  background-color: #d8e4bc;
+  padding-top: 20px;
+}
+
+.Dry.Martini {
+  background-color: #f3f0e5;
+}
+
+.Aperol.Spritz {
+  background-color: #fa8128;
+  padding-top: 20px;
+}
+
+.result-section img {
+  width: 50%;
+  height: auto;
+  text-align: center;
+}
+.result-card h3 {
+  display: block;
+  margin: 0;
+  font-size: 12px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+.name-ingredients {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  float: left;
+  margin: 0;
+  align-items: flex-start;
+}
+
+.result-ingredient {
+  margin: 0;
+  font-size: 10px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+.difficulty-p {
+  font-size: 12px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+.difficulty-section {
+  margin-top: 30px;
+}
 
 /* ---------- discover styling start ---------- */
+.discover-section {
+  padding-top: 55px;
+}
+
 .discover-top {
   display: flex;
   margin: 0;
@@ -467,6 +815,7 @@ img {
   display: flex;
   justify-content: space-around;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .alcohol-section h4 {
@@ -569,7 +918,6 @@ img {
   display: flex;
   justify-content: space-around;
   flex-direction: row;
-  margin-top: 30px;
 }
 
 .type img {
@@ -577,7 +925,7 @@ img {
   height: auto;
 }
 .type-section h4 {
-  margin-left: -70%;
+  margin-left: -74%;
   font-family: "Rambla", sans-serif;
   margin-bottom: 3px;
   font-size: 28px;
@@ -644,12 +992,11 @@ img {
   display: flex;
   justify-content: space-around;
   flex-direction: row;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  padding-bottom: 70px;
 }
 
 .vibe-section h4 {
-  margin-left: -70%;
+  margin-left: -74%;
   font-family: "Rambla", sans-serif;
   margin-bottom: 3px;
   font-size: 28px;
@@ -702,6 +1049,9 @@ img {
 /* ---------- discover styling End ---------- */
 
 /* ---------- Vodka page start ---------- */
+#category {
+  padding-top: 55px;
+}
 
 #category-title {
   font-family: "Dancing Script", cursive;
@@ -739,8 +1089,4 @@ img {
   margin-top: -12px;
   font-size: 13px;
   padding-bottom: 5px;
-}
-
-.search-function {
-  background-color: #ededed;
 }

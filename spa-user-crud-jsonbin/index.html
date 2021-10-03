@@ -73,36 +73,143 @@
       <div id="search-frontpage" class="grid-container">
         <h1>Search</h1>
         <div class="search-function">
+          <input class="searchbar" type="text" placeholder="Search.." />
+          <button class="searchbar-x" onclick="reset()">
+            <i class="fas fa-search fa-lg"></i>
+          </button>
           <article class="ingredient-sections">
-            <button onclick="reset()">Reset</button>
-            <h4>Liquor</h4>
             <button
               onclick="filterByIngredient('Vodka')"
-              class="Vodka"
+              class="Vodka ingredient-button"
               id="vodkaIngredient"
             >
               Vodka
             </button>
             <button
               onclick="filterByIngredient('Gin')"
-              class="Gin"
+              class="Gin ingredient-button"
               id="ginIngredient"
             >
               Gin
             </button>
-          </article>
-          <article class="ingredient-sections">
-            <h4>Juice</h4>
+            <button
+              onclick="filterByIngredient('Coffee Liqueur')"
+              class="Coffee Liqueur ingredient-button"
+              id="coffeeLiqueurIngredient"
+            >
+              Coffee Liqueur
+            </button>
+            <button
+              onclick="filterByIngredient('Dry Vermouth')"
+              class="Dry Vermouth ingredient-button"
+              id="dryVermouthIngredient"
+            >
+              Dry Vermouth
+            </button>
+            <button
+              onclick="filterByIngredient('Cointreau')"
+              class="Cointreau ingredient-button"
+              id="cointreauIngredient"
+            >
+              Cointreau
+            </button>
+            <button
+              onclick="filterByIngredient('Aperol')"
+              class="Aperol ingredient-button"
+              id="aperolIngredient"
+            >
+              Aperol
+            </button>
             <button
               onclick="filterByIngredient('Orange juice')"
-              class="Orange"
+              class="Orange ingredient-button"
               id="orangeIngredient"
             >
               Orange Juice
             </button>
+            <button
+              onclick="filterByIngredient('Grenadine')"
+              class="Grenadine ingredient-button"
+              id="grenadineIngredient"
+            >
+              Grenadine
+            </button>
+            <button
+              onclick="filterByIngredient('Tequila')"
+              class="Tequila ingredient-button"
+              id="tequilaIngredient"
+            >
+              Tequila
+            </button>
+            <button
+              onclick="filterByIngredient('Lime juice')"
+              class="Lime juice ingredient-button"
+              id="limeJuiceIngredient"
+            >
+              Lime Juice
+            </button>
+            <button
+              onclick="filterByIngredient('Mango syrup')"
+              class="Mango syrup ingredient-button"
+              id="mangoSyrupIngredient"
+            >
+              Mango Syrup
+            </button>
           </article>
         </div>
         <div class="search-result" id="search-result"></div>
+      </div>
+
+      <div class="frontpage-discover">
+        <h1>Discover</h1>
+        <div class="alcohol-section">
+          <div class="alcohol">
+            <div class="vodka-card" onclick="filterByKeyword('Vodka')">
+              <div class="card-border">
+                <img src="img/vodka.svg" alt="vodka" />
+                <h5>Vodka</h5>
+              </div>
+            </div>
+            <div class="gin-card" onclick="filterByKeyword('Gin')">
+              <div class="card-border">
+                <img src="img/gin.svg" alt="" />
+                <h5>Gin</h5>
+              </div>
+            </div>
+            <div class="whiterum-card" onclick="filterByKeyword('White rum')">
+              <div class="card-border">
+                <img src="img/white rum-1 1.svg" alt="" />
+                <h5>White Rum</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="frontpage-type">
+        <h2>Type</h2>
+        <div class="type-section">
+          <div class="type">
+            <div class="tropical-card" onclick="filterByKeyword('Tropical')">
+              <div class="card-border">
+                <img src="img/tropical 1.svg" alt="tropical" />
+                <h5>Tropical</h5>
+              </div>
+            </div>
+            <div class="frozen-card" onclick="filterByKeyword('Frozen')">
+              <div class="card-border">
+                <img src="img/Frozen 1.svg" alt="frozen" />
+                <h5>Frozen</h5>
+              </div>
+            </div>
+            <div class="creamy-card" onclick="filterByKeyword('Creamy')">
+              <div class="card-border">
+                <img src="img/creamy 1.svg" alt="creamy" />
+                <h5>Creamy</h5>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -110,9 +217,6 @@
     <section class="discover page" id="discover">
       <div class="discover-section">
         <div class="discover-top">
-          <button onclick="goBack()">
-            <i class="fas fa-arrow-left"></i>
-          </button>
           <h3>Discover</h3>
         </div>
         <div class="alcohol-section">
@@ -196,7 +300,9 @@
     <!-- Chosen category from Discover -->
     <section id="category" class="page">
       <div class="discover-top">
-        <button onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
+        <button onclick="goBack()" class="back-button">
+          <i class="fas fa-arrow-left"></i>
+        </button>
         <h1 id="category-title"></h1>
       </div>
       <div class="alcohol" id="alcohol-test"></div>
@@ -205,7 +311,9 @@
     <!-- Drink category -->
     <section id="drink" class="page">
       <div class="discover-top">
-        <button onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
+        <button onclick="goBack()" class="back-button">
+          <i class="fas fa-arrow-left"></i>
+        </button>
         <h1 id="category-title"></h1>
       </div>
       <div class="alcohol" id="alcohol-test"></div>
