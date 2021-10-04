@@ -2,11 +2,12 @@
  * All routes of the SPA
  * "path": "id of page in DOM"
  */
+// Sigurd, Aron, Thomas, Rune
 const _routes = {
   "#/": "home",
   "#/discover": "discover",
   "#/favorites": "favorites",
-  "#/search": "search",
+  "#/search": "home",
   "#/category": "category",
   "#/specific-drink": "specific-drink",
 };

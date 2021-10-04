@@ -46,7 +46,7 @@
       <a class="nav-link" href="#/search"
         ><i class="fas fa-search fa-lg"></i
       ></a>
-      <a class="nav-link" onclick="openNav()">
+      <a class="bmenu" onclick="openNav()">
         <i class="fas fa-bars fa-lg"></i>
       </a>
     </nav>
@@ -60,23 +60,29 @@
 
       <!-- Overlay content -->
       <div class="overlay-content">
+        <a href="#">Surprise me!</a>
+        <a href="#">Submit your own drink</a>
         <a href="#">Login</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-        <a href="#">Submit a drink</a>
       </div>
     </div>
 
-    <!-- pages -->
-    <!-- users page -->
+    <!-- Pages -->
+    <!-- Home page -->
     <section id="home" class="page">
-      <div id="search-frontpage" class="grid-container">
-        <h1>Search</h1>
+      <h1 class="frontpage-search-h1">Search</h1>
+      <div id="search-frontpage">
         <div class="search-function">
-          <input class="searchbar" type="text" placeholder="Search.." />
-          <button class="searchbar-x" onclick="reset()">
+          <!-- Input search -->
+          <input
+            type="search"
+            placeholder="Search"
+            class="searchbar"
+            onkeyup="search(this.value)"
+          />
+          <button class="searchbar-x">
             <i class="fas fa-search fa-lg"></i>
           </button>
+          <!-- Onclick search/match by ingredient -->
           <article class="ingredient-sections">
             <button
               onclick="filterByIngredient('Vodka')"
@@ -157,26 +163,34 @@
             </button>
           </article>
         </div>
+        <!-- Cocktails append by search result -->
         <div class="search-result" id="search-result"></div>
       </div>
 
+      <!-- Homepage discover section -->
       <div class="frontpage-discover">
         <h1>Discover</h1>
-        <div class="alcohol-section">
-          <div class="alcohol">
-            <div class="vodka-card" onclick="filterByKeyword('Vodka')">
+        <div class="frontpage-alcohol-section">
+          <div class="frontpage-alcohol">
+            <div
+              class="frontpage-vodka-card"
+              onclick="filterByKeyword('Vodka')"
+            >
               <div class="card-border">
                 <img src="img/vodka.svg" alt="vodka" />
                 <h5>Vodka</h5>
               </div>
             </div>
-            <div class="gin-card" onclick="filterByKeyword('Gin')">
+            <div class="frontpage-gin-card" onclick="filterByKeyword('Gin')">
               <div class="card-border">
                 <img src="img/gin.svg" alt="" />
                 <h5>Gin</h5>
               </div>
             </div>
-            <div class="whiterum-card" onclick="filterByKeyword('White rum')">
+            <div
+              class="frontpage-whiterum-card"
+              onclick="filterByKeyword('White rum')"
+            >
               <div class="card-border">
                 <img src="img/white rum-1 1.svg" alt="" />
                 <h5>White Rum</h5>
@@ -187,7 +201,6 @@
       </div>
 
       <div class="frontpage-type">
-        <h2>Type</h2>
         <div class="type-section">
           <div class="type">
             <div class="tropical-card" onclick="filterByKeyword('Tropical')">
@@ -222,22 +235,42 @@
         <div class="alcohol-section">
           <h4>Alcohol</h4>
           <div class="alcohol">
-            <div class="vodka-card" onclick="filterByKeyword('Vodka')">
-              <div class="card-border">
-                <img src="img/vodka.svg" alt="vodka" />
-                <h5>Vodka</h5>
+            <div class="alcohol-nowrap">
+              <div
+                class="vodka-card alcohol-card"
+                onclick="filterByKeyword('Vodka')"
+              >
+                <div class="card-border">
+                  <img src="img/vodka.svg" alt="vodka" />
+                  <h5>Vodka</h5>
+                </div>
               </div>
-            </div>
-            <div class="gin-card" onclick="filterByKeyword('Gin')">
-              <div class="card-border">
-                <img src="img/gin.svg" alt="" />
-                <h5>Gin</h5>
+              <div
+                class="gin-card alcohol-card"
+                onclick="filterByKeyword('Gin')"
+              >
+                <div class="card-border">
+                  <img src="img/gin.svg" alt="" />
+                  <h5>Gin</h5>
+                </div>
               </div>
-            </div>
-            <div class="whiterum-card" onclick="filterByKeyword('White rum')">
-              <div class="card-border">
-                <img src="img/white rum-1 1.svg" alt="" />
-                <h5>White Rum</h5>
+              <div
+                class="whiterum-card alcohol-card"
+                onclick="filterByKeyword('White rum')"
+              >
+                <div class="card-border">
+                  <img src="img/white rum-1 1.svg" alt="" />
+                  <h5>White Rum</h5>
+                </div>
+              </div>
+              <div
+                class="whiskey-card alcohol-card"
+                onclick="filterByKeyword('Whiskey')"
+              >
+                <div class="card-border">
+                  <img src="img/whiskey 1.svg" alt="Whiskey" />
+                  <h5>Whiskey</h5>
+                </div>
               </div>
             </div>
           </div>
@@ -294,6 +327,7 @@
 
     <!-- Discover -->
     <section id="favorites" class="page">
+      <h1>Favorites</h1>
       <section id="fav-drink-container"></section>
     </section>
 
