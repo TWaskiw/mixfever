@@ -1,371 +1,288 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>User CRUD SPA</title>
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
-      crossorigin="anonymous"
-    />
-    <meta
-      name="description"
-      content="Get started with HTML, CSS and JavaScript"
-    />
-    <meta name="author" content="Rasmus Cederdorff" />
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Rambla&display=swap"
-      rel="stylesheet"
-    />
-  </head>
 
-  <body>
-    <!-- tabbar navigation -->
-    <nav class="tabbar">
-      <a class="nav-link" href="#/"><i class="fas fa-home fa-lg"></i></a>
-      <a class="nav-link" href="#/discover"
-        ><i class="fas fa-glass-martini-alt fa-lg"></i
-      ></a>
-      <a class="nav-link" href="#/favorites"
-        ><i class="fas fa-heart fa-lg"></i
-      ></a>
-      <a class="nav-link" href="#/search"
-        ><i class="fas fa-search fa-lg"></i
-      ></a>
-      <a class="bmenu" onclick="openNav()">
-        <i class="fas fa-bars fa-lg"></i>
-      </a>
-    </nav>
+<head>
+  <meta charset="utf-8" />
+  <title>User CRUD SPA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
+  <meta name="description" content="Get started with HTML, CSS and JavaScript" />
+  <meta name="author" content="Rasmus Cederdorff" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rambla&display=swap" rel="stylesheet" />
+</head>
 
-    <!-- The overlay -->
-    <div id="myNav" class="overlay">
-      <!-- Button to close the overlay navigation -->
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
-        >&times;</a
-      >
+<body>
+  <!-- tabbar navigation -->
+  <nav class="tabbar">
+    <a class="nav-link" href="#/"><i class="fas fa-home fa-lg"></i></a>
+    <a class="nav-link" href="#/discover"><i class="fas fa-glass-martini-alt fa-lg"></i></a>
+    <a class="nav-link" href="#/favorites"><i class="fas fa-heart fa-lg"></i></a>
+    <a class="nav-link" href="#/search"><i class="fas fa-search fa-lg"></i></a>
+    <a class="bmenu" onclick="openNav()">
+      <i class="fas fa-bars fa-lg"></i>
+    </a>
+  </nav>
 
-      <!-- Overlay content -->
-      <div class="overlay-content">
-        <a href="#">Surprise me!</a>
-        <a href="#">Submit your own drink</a>
-        <a href="#">Login</a>
+  <!-- The overlay -->
+  <div id="myNav" class="overlay">
+    <!-- Button to close the overlay navigation -->
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+    <!-- Overlay content -->
+    <div class="overlay-content">
+      <a href="#">Surprise me!</a>
+      <a href="#">Submit your own drink</a>
+      <a href="#">Login</a>
+    </div>
+  </div>
+
+  <!-- Pages -->
+  <!-- Home page -->
+  <section id="home" class="page">
+    <h1 class="frontpage-search-h1">Search</h1>
+    <div id="search-frontpage">
+      <div class="search-function">
+        <!-- Input search -->
+        <input type="search" placeholder="Search" class="searchbar" onkeyup="search(this.value)" />
+        <button class="searchbar-x">
+          <i class="fas fa-search fa-lg"></i>
+        </button>
+        <!-- Onclick search/match by ingredient -->
+        <article class="ingredient-sections">
+          <button onclick="filterByIngredient('Vodka')" class="Vodka ingredient-button" id="vodkaIngredient">
+            Vodka
+          </button>
+          <button onclick="filterByIngredient('Gin')" class="Gin ingredient-button" id="ginIngredient">
+            Gin
+          </button>
+          <button onclick="filterByIngredient('Coffee Liqueur')" class="Coffee Liqueur ingredient-button"
+            id="coffeeLiqueurIngredient">
+            Coffee Liqueur
+          </button>
+          <button onclick="filterByIngredient('Dry Vermouth')" class="Dry Vermouth ingredient-button"
+            id="dryVermouthIngredient">
+            Dry Vermouth
+          </button>
+          <button onclick="filterByIngredient('Cointreau')" class="Cointreau ingredient-button"
+            id="cointreauIngredient">
+            Cointreau
+          </button>
+          <button onclick="filterByIngredient('Aperol')" class="Aperol ingredient-button" id="aperolIngredient">
+            Aperol
+          </button>
+          <button onclick="filterByIngredient('Orange juice')" class="Orange ingredient-button" id="orangeIngredient">
+            Orange Juice
+          </button>
+          <button onclick="filterByIngredient('Grenadine')" class="Grenadine ingredient-button"
+            id="grenadineIngredient">
+            Grenadine
+          </button>
+          <button onclick="filterByIngredient('Tequila')" class="Tequila ingredient-button" id="tequilaIngredient">
+            Tequila
+          </button>
+          <button onclick="filterByIngredient('Lime juice')" class="Lime juice ingredient-button"
+            id="limeJuiceIngredient">
+            Lime Juice
+          </button>
+          <button onclick="filterByIngredient('Mango syrup')" class="Mango syrup ingredient-button"
+            id="mangoSyrupIngredient">
+            Mango Syrup
+          </button>
+        </article>
+      </div>
+      <!-- Cocktails append by search result -->
+      <div class="search-result" id="search-result"></div>
+    </div>
+
+    <!-- Homepage discover section -->
+    <div class="frontpage-discover">
+      <h1>Discover</h1>
+      <div class="frontpage-alcohol-section">
+        <div class="frontpage-alcohol">
+          <div class="frontpage-vodka-card" onclick="filterByKeyword('Vodka')">
+            <div class="card-border">
+              <img src="img/vodka.svg" alt="vodka" />
+              <h5>Vodka</h5>
+            </div>
+          </div>
+          <div class="frontpage-gin-card" onclick="filterByKeyword('Gin')">
+            <div class="card-border">
+              <img src="img/gin.svg" alt="" />
+              <h5>Gin</h5>
+            </div>
+          </div>
+          <div class="frontpage-whiterum-card" onclick="filterByKeyword('White rum')">
+            <div class="card-border">
+              <img src="img/white rum-1 1.svg" alt="" />
+              <h5>White Rum</h5>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- Pages -->
-    <!-- Home page -->
-    <section id="home" class="page">
-      <h1 class="frontpage-search-h1">Search</h1>
-      <div id="search-frontpage">
-        <div class="search-function">
-          <!-- Input search -->
-          <input
-            type="search"
-            placeholder="Search"
-            class="searchbar"
-            onkeyup="search(this.value)"
-          />
-          <button class="searchbar-x">
-            <i class="fas fa-search fa-lg"></i>
-          </button>
-          <!-- Onclick search/match by ingredient -->
-          <article class="ingredient-sections">
-            <button
-              onclick="filterByIngredient('Vodka')"
-              class="Vodka ingredient-button"
-              id="vodkaIngredient"
-            >
-              Vodka
-            </button>
-            <button
-              onclick="filterByIngredient('Gin')"
-              class="Gin ingredient-button"
-              id="ginIngredient"
-            >
-              Gin
-            </button>
-            <button
-              onclick="filterByIngredient('Coffee Liqueur')"
-              class="Coffee Liqueur ingredient-button"
-              id="coffeeLiqueurIngredient"
-            >
-              Coffee Liqueur
-            </button>
-            <button
-              onclick="filterByIngredient('Dry Vermouth')"
-              class="Dry Vermouth ingredient-button"
-              id="dryVermouthIngredient"
-            >
-              Dry Vermouth
-            </button>
-            <button
-              onclick="filterByIngredient('Cointreau')"
-              class="Cointreau ingredient-button"
-              id="cointreauIngredient"
-            >
-              Cointreau
-            </button>
-            <button
-              onclick="filterByIngredient('Aperol')"
-              class="Aperol ingredient-button"
-              id="aperolIngredient"
-            >
-              Aperol
-            </button>
-            <button
-              onclick="filterByIngredient('Orange juice')"
-              class="Orange ingredient-button"
-              id="orangeIngredient"
-            >
-              Orange Juice
-            </button>
-            <button
-              onclick="filterByIngredient('Grenadine')"
-              class="Grenadine ingredient-button"
-              id="grenadineIngredient"
-            >
-              Grenadine
-            </button>
-            <button
-              onclick="filterByIngredient('Tequila')"
-              class="Tequila ingredient-button"
-              id="tequilaIngredient"
-            >
-              Tequila
-            </button>
-            <button
-              onclick="filterByIngredient('Lime juice')"
-              class="Lime juice ingredient-button"
-              id="limeJuiceIngredient"
-            >
-              Lime Juice
-            </button>
-            <button
-              onclick="filterByIngredient('Mango syrup')"
-              class="Mango syrup ingredient-button"
-              id="mangoSyrupIngredient"
-            >
-              Mango Syrup
-            </button>
-          </article>
+    <div class="frontpage-type">
+      <div class="type-section">
+        <div class="type">
+          <div class="tropical-card" onclick="filterByKeyword('Tropical')">
+            <div class="card-border">
+              <img src="img/tropical 1.svg" alt="tropical" />
+              <h5>Tropical</h5>
+            </div>
+          </div>
+          <div class="frozen-card" onclick="filterByKeyword('Frozen')">
+            <div class="card-border">
+              <img src="img/Frozen 1.svg" alt="frozen" />
+              <h5>Frozen</h5>
+            </div>
+          </div>
+          <div class="creamy-card" onclick="filterByKeyword('Creamy')">
+            <div class="card-border">
+              <img src="img/creamy 1.svg" alt="creamy" />
+              <h5>Creamy</h5>
+            </div>
+          </div>
         </div>
-        <!-- Cocktails append by search result -->
-        <div class="search-result" id="search-result"></div>
       </div>
+    </div>
+  </section>
 
-      <!-- Homepage discover section -->
-      <div class="frontpage-discover">
-        <h1>Discover</h1>
-        <div class="frontpage-alcohol-section">
-          <div class="frontpage-alcohol">
-            <div
-              class="frontpage-vodka-card"
-              onclick="filterByKeyword('Vodka')"
-            >
+  <!-- Discover page -->
+  <section class="discover page" id="discover">
+    <div class="discover-section">
+      <div class="discover-top">
+        <h3>Discover</h3>
+      </div>
+      <div class="alcohol-section">
+        <h4>Alcohol</h4>
+        <div class="alcohol">
+          <div class="alcohol-nowrap">
+            <div class="vodka-card alcohol-card" onclick="filterByKeyword('Vodka')">
               <div class="card-border">
                 <img src="img/vodka.svg" alt="vodka" />
                 <h5>Vodka</h5>
               </div>
             </div>
-            <div class="frontpage-gin-card" onclick="filterByKeyword('Gin')">
+            <div class="gin-card alcohol-card" onclick="filterByKeyword('Gin')">
               <div class="card-border">
                 <img src="img/gin.svg" alt="" />
                 <h5>Gin</h5>
               </div>
             </div>
-            <div
-              class="frontpage-whiterum-card"
-              onclick="filterByKeyword('White rum')"
-            >
+            <div class="whiterum-card alcohol-card" onclick="filterByKeyword('White rum')">
               <div class="card-border">
                 <img src="img/white rum-1 1.svg" alt="" />
                 <h5>White Rum</h5>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="frontpage-type">
-        <div class="type-section">
-          <div class="type">
-            <div class="tropical-card" onclick="filterByKeyword('Tropical')">
+            <div class="whiskey-card alcohol-card" onclick="filterByKeyword('Whiskey')">
               <div class="card-border">
-                <img src="img/tropical 1.svg" alt="tropical" />
-                <h5>Tropical</h5>
-              </div>
-            </div>
-            <div class="frozen-card" onclick="filterByKeyword('Frozen')">
-              <div class="card-border">
-                <img src="img/Frozen 1.svg" alt="frozen" />
-                <h5>Frozen</h5>
-              </div>
-            </div>
-            <div class="creamy-card" onclick="filterByKeyword('Creamy')">
-              <div class="card-border">
-                <img src="img/creamy 1.svg" alt="creamy" />
-                <h5>Creamy</h5>
+                <img src="img/whiskey 1.svg" alt="Whiskey" />
+                <h5>Whiskey</h5>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
-
-    <!-- Discover page -->
-    <section class="discover page" id="discover">
-      <div class="discover-section">
-        <div class="discover-top">
-          <h3>Discover</h3>
-        </div>
-        <div class="alcohol-section">
-          <h4>Alcohol</h4>
-          <div class="alcohol">
-            <div class="alcohol-nowrap">
-              <div
-                class="vodka-card alcohol-card"
-                onclick="filterByKeyword('Vodka')"
-              >
-                <div class="card-border">
-                  <img src="img/vodka.svg" alt="vodka" />
-                  <h5>Vodka</h5>
-                </div>
-              </div>
-              <div
-                class="gin-card alcohol-card"
-                onclick="filterByKeyword('Gin')"
-              >
-                <div class="card-border">
-                  <img src="img/gin.svg" alt="" />
-                  <h5>Gin</h5>
-                </div>
-              </div>
-              <div
-                class="whiterum-card alcohol-card"
-                onclick="filterByKeyword('White rum')"
-              >
-                <div class="card-border">
-                  <img src="img/white rum-1 1.svg" alt="" />
-                  <h5>White Rum</h5>
-                </div>
-              </div>
-              <div
-                class="whiskey-card alcohol-card"
-                onclick="filterByKeyword('Whiskey')"
-              >
-                <div class="card-border">
-                  <img src="img/whiskey 1.svg" alt="Whiskey" />
-                  <h5>Whiskey</h5>
-                </div>
-              </div>
+      <div class="type-section">
+        <h4>Type</h4>
+        <div class="type">
+          <div class="tropical-card" onclick="filterByKeyword('Tropical')">
+            <div class="card-border">
+              <img src="img/tropical 1.svg" alt="tropical" />
+              <h5>Tropical</h5>
             </div>
           </div>
-        </div>
-        <div class="type-section">
-          <h4>Type</h4>
-          <div class="type">
-            <div class="tropical-card" onclick="filterByKeyword('Tropical')">
-              <div class="card-border">
-                <img src="img/tropical 1.svg" alt="tropical" />
-                <h5>Tropical</h5>
-              </div>
-            </div>
-            <div class="frozen-card" onclick="filterByKeyword('Frozen')">
-              <div class="card-border">
-                <img src="img/Frozen 1.svg" alt="frozen" />
-                <h5>Frozen</h5>
-              </div>
-            </div>
-            <div class="creamy-card" onclick="filterByKeyword('Creamy')">
-              <div class="card-border">
-                <img src="img/creamy 1.svg" alt="creamy" />
-                <h5>Creamy</h5>
-              </div>
+          <div class="frozen-card" onclick="filterByKeyword('Frozen')">
+            <div class="card-border">
+              <img src="img/Frozen 1.svg" alt="frozen" />
+              <h5>Frozen</h5>
             </div>
           </div>
-        </div>
-
-        <div class="vibe-section">
-          <h4>Vibe</h4>
-          <div class="vibe">
-            <div class="poolside-card" onclick="filterByKeyword('Poolside')">
-              <div class="card-border">
-                <img src="img/limoncellaMule 1.svg" alt="Limoncella mule" />
-                <h5>Poolside</h5>
-              </div>
-            </div>
-            <div class="movie-card" onclick="filterByKeyword('Movie')">
-              <div class="card-border">
-                <img src="img/appleCider 1.svg" alt="Apple Cider" />
-                <h5>Movie Night</h5>
-              </div>
-            </div>
-            <div class="birthday-card" onclick="filterByKeyword('Birthday')">
-              <div class="card-border">
-                <img src="img/oldGlory 1.svg" alt="Old Glory" />
-                <h5>Birthday Party</h5>
-              </div>
+          <div class="creamy-card" onclick="filterByKeyword('Creamy')">
+            <div class="card-border">
+              <img src="img/creamy 1.svg" alt="creamy" />
+              <h5>Creamy</h5>
             </div>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- Discover -->
-    <section id="favorites" class="page">
-      <h1>Favorites</h1>
-      <section id="fav-drink-container"></section>
-    </section>
-
-    <!-- Chosen category from Discover -->
-    <section id="category" class="page">
-      <div class="discover-top">
-        <button onclick="goBack()" class="back-button">
-          <i class="fas fa-arrow-left"></i>
-        </button>
-        <h1 id="category-title"></h1>
+      <div class="vibe-section">
+        <h4>Vibe</h4>
+        <div class="vibe">
+          <div class="poolside-card" onclick="filterByKeyword('Poolside')">
+            <div class="card-border">
+              <img src="img/limoncellaMule 1.svg" alt="Limoncella mule" />
+              <h5>Poolside</h5>
+            </div>
+          </div>
+          <div class="movie-card" onclick="filterByKeyword('Movie')">
+            <div class="card-border">
+              <img src="img/appleCider 1.svg" alt="Apple Cider" />
+              <h5>Movie Night</h5>
+            </div>
+          </div>
+          <div class="birthday-card" onclick="filterByKeyword('Birthday')">
+            <div class="card-border">
+              <img src="img/oldGlory 1.svg" alt="Old Glory" />
+              <h5>Birthday Party</h5>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="alcohol" id="alcohol-test"></div>
-    </section>
-
-    <!-- Drink category -->
-    <section id="drink" class="page">
-      <div class="discover-top">
-        <button onclick="goBack()" class="back-button">
-          <i class="fas fa-arrow-left"></i>
-        </button>
-        <h1 id="category-title"></h1>
-      </div>
-      <div class="alcohol" id="alcohol-test"></div>
-    </section>
-
-    <!-- loader  -->
-    <div id="loader">
-      <div class="spinner"></div>
     </div>
+  </section>
 
-    <!-- Drink page -->
-    <section id="specific-drink" class="page">
-      <div id="chosen-drink"></div>
-    </section>
+  <!-- Discover -->
+  <section id="favorites" class="page">
+    <h1>Favorites</h1>
+    <section id="fav-drink-container"></section>
+  </section>
 
-    <!-- Router functionality  -->
-    <script src="js/router.js"></script>
-    <!-- main js file -->
-    <script src="js/main.js"></script>
-  </body>
+  <!-- Chosen category from Discover -->
+  <section id="category" class="page">
+    <div class="discover-top">
+      <button onclick="goBack()" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <h1 id="category-title"></h1>
+    </div>
+    <div class="alcohol" id="alcohol-test"></div>
+  </section>
+
+  <!-- Drink category -->
+  <section id="drink" class="page">
+    <div class="discover-top">
+      <button onclick="goBack()" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <h1 id="category-title"></h1>
+    </div>
+    <div class="alcohol" id="alcohol-test"></div>
+  </section>
+
+  <!-- loader  -->
+  <div id="loader">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Drink page -->
+  <section id="specific-drink" class="page">
+    <div id="chosen-drink"></div>
+  </section>
+
+  <!-- Router functionality  -->
+  <script src="js/router.js"></script>
+  <!-- main js file -->
+  <script src="js/main.js"></script>
+</body>
+
 </html>

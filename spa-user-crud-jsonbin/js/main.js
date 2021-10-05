@@ -234,7 +234,7 @@ function closeNav() {
 }
 
 // ========= Discover ========= //
-// Filterer i drinks ud fra det keyword brugeren trykker på i Discover
+// Filtrer i drinks ud fra det keyword brugeren trykker på i Discover
 // Thomas
 function filterByKeyword(keyword) {
   const filteredDrinks = _drinks.filter((drink) => {
@@ -324,6 +324,8 @@ function showDrink(id) {
       </article>
     `;
   navigateTo("#/specific-drink");
+  document.querySelector("#servingsAmount").value = 1;
+  multiply(1,0);
 }
 
 // Approach pop up
