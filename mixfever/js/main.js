@@ -17,7 +17,6 @@ async function loadDrinks() {
   });
   const data = await response.json();
   _drinks = data.record;
-  console.log(data);
   appendDrinks(_drinks);
 }
 loadDrinks();
@@ -33,7 +32,6 @@ function filterByIngredient(keyword) {
       }
     }
   }
-  console.log(filteredDrinks);
   appendDrinkSearch(filteredDrinks);
 }
 
@@ -95,7 +93,6 @@ function appendDrinkSearch(drinks) {
 // Sigurd, Thomas
 function appendDrinks(drinks) {
   for (let drink of drinks) {
-    console.log(drink);
   }
   showLoader(false);
 }
@@ -112,7 +109,6 @@ function search(searchValue) {
     }
   }
   appendDrinkSearch(results);
-  console.log(results);
 }
 
 // ========== Append favoritiseret drink til favorit siden ==========
@@ -120,7 +116,6 @@ function search(searchValue) {
 function appendFavDrinks() {
   let htmlFav = "";
   for (const drink of _favDrinks) {
-    console.log(drink);
     htmlFav += /*html*/ `
       <article class="favorite-card" onclick="showDrink('${drink.id}')">
         <img src="${drink.img}">
@@ -325,7 +320,7 @@ function showDrink(id) {
     `;
   navigateTo("#/specific-drink");
   document.querySelector("#servingsAmount").value = 1;
-  multiply(1,0);
+  multiply(1, drink.id);
 }
 
 // Approach pop up
