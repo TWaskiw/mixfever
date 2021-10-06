@@ -1,7 +1,7 @@
 // ========== GLOBAL VARIABLES ========= Sigurd, Rune, Aron & Thomas
 let _drinks = [];
 let _favDrinks = [];
-const _baseUrl = "https://api.jsonbin.io/v3/b/6156f83aaa02be1d44522307";
+const _baseUrl = "https://api.jsonbin.io/v3/b/615d6ae44a82881d6c5bc127";
 
 const _headers = {
   "X-Master-Key":
